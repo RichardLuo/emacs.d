@@ -306,7 +306,7 @@ that was stored with ska-point-to-register."
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;; (require 'fvwm-mode)
-(require 'psvn)
+;;; (require 'psvn)
 
 ; Load Dired X when Dired is loaded.
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
@@ -387,14 +387,26 @@ that was stored with ska-point-to-register."
 ;; (setq grep-find-command
 ;;       "emc_grep ")
 
-
-
-
 ;;(setq doxymacs-doxygen-style "C++")
 ;; (require 'gas-mode)
 
 (setq x-select-enable-clipboard t)
+;; key bindings
+(when (eq system-type 'darwin) ;; mac specific settings
+  (setq mac-option-modifier 'alt)
+  (setq mac-command-modifier 'meta)
+; setting Super ＆ Hyper keys for the Mac keyboard, for emacs running in OS X
+; (setq mac-option-modifier 'hyper) ; sets the Option key as Hyper
+  (setq mac-option-modifier 'super) ; sets the Option key as Super
+  (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+  )
 
+(defalias 'perl-mode 'cperl-mode)
+
+(defun my-makefile-mode-hook ()
+  (define-key makefile-mode-map "\M-n" nil)
+  (define-key makefile-mode-map "\M-p" nil))
+(add-hook 'makefile-mode-hook 'my-makefile-mode-hook)
 
 (define-key global-map [(control f12)] 'org-agenda-open-link)
 (provide 'init-misc)
