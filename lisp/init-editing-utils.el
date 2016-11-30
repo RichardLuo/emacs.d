@@ -129,10 +129,10 @@
 (diminish 'undo-tree-mode)
 
 ;; outline-minor-mode
-(require 'init-outl-minor)
+;;; (require 'init-outl-minor)
 
 ;; use C-u C-u C-s/r to trigger the flexible search action
-(require 'init-flex-isearch)
+;;; (require 'init-flex-isearch)
 
 ;; set some compilation shortcuts
 (require 'init-compile)

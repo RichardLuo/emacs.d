@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
@@ -48,6 +55,10 @@
 ;; (require 'init-flycheck)
 
 (require 'init-recentf)
+(require 'init-gui)
+(require 'init-misc)
+(require 'init-cscope)
+(require 'init-eshell)
 (require 'init-ido)
 (require 'init-yasnippet)
 (require 'init-hippie-expand)
@@ -58,8 +69,8 @@
 ;; (require 'init-mmm)
 (require 'init-tabbar)
 (require 'init-editing-utils)
-(require 'init-evil)
-(require 'init-matlab)
+;; (require 'init-evil)
+;; (require 'init-matlab)
 
 ;; (require 'init-vc)
 ;; (require 'init-darcs)
@@ -68,7 +79,7 @@
 ;; (require 'init-crontab)
 ;; (require 'init-textile)
 (require 'init-markdown)
-(require 'init-auctex)
+;; (require 'init-auctex)
 ;; (require 'init-csv)
 ;; (require 'init-erlang)
 ;; (require 'init-javascript)
@@ -79,7 +90,7 @@
 ;; (require 'init-css)
 ;; (require 'init-haml)
 ;; (require 'init-python-mode)
-(require 'init-haskell)
+;;;; (require 'init-haskell)
 ;; (require 'init-ruby-mode)
 ;; (require 'init-rails)
 ;; (require 'init-sql)
@@ -110,7 +121,6 @@
 ;;   (require-package 'osx-location))
 ;; (require-package 'regex-tool)
 
-(require 'init-themes)
 ;; ;;----------------------------------------------------------------------------
 ;; ;; Allow access from emacsclient
 ;; ;;----------------------------------------------------------------------------
@@ -144,5 +154,6 @@
 ;;              (message "init completed in %.2fms"
 ;;                       (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
+(require 'init-themes)
 
 (provide 'init)
