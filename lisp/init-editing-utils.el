@@ -21,7 +21,7 @@
  make-backup-files nil
  mouse-yank-at-point t
  save-interprogram-paste-before-kill t
- scroll-preserve-screen-position 'always
+ scroll-preserve-screen-position t
  scroll-step 1
  scroll-margin 3
  scroll-conservatively 10000

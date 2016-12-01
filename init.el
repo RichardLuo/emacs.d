@@ -155,5 +155,6 @@
 ;;                       (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
 (require 'init-themes)
+(require 'init-scroll)
 
 (provide 'init)
