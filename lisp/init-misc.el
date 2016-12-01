@@ -173,58 +173,24 @@ that was stored with ska-point-to-register."
 (global-set-key [(control c)(k)] 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
-
-;============================================================
-;; gcm scroll
-(defun gcm-scroll-down ()
-  (interactive)
-  (scroll-up 1))
-
-(defun gcm-scroll-up ()
-  (interactive)
-  (scroll-down 1))
-
-;; (global-set-key [(control down)] 'gcm-scroll-down)
-;; (global-set-key [(control up)]   'gcm-scroll-up)
-
-(global-set-key [(control \()] 'gcm-scroll-down)
-(global-set-key [(control \))] 'gcm-scroll-up)
-
-;;================================================================
-;; sfp page scroll
-(defun sfp-page-down ()
-  (interactive)
-  (next-line
-   (- (window-text-height)
-	  next-screen-context-lines)))
-    
-(defun sfp-page-up ()
-  (interactive)
-  (previous-line
-   (- (window-text-height)
-	  next-screen-context-lines)))
-    
 ;; (setq x-alt-keysym 'meta)
-(global-set-key "\M-n"  (lambda () (interactive) (scroll-up   8)))
-(global-set-key "\M-p"  (lambda () (interactive) (scroll-down 8)))
-
+(global-set-key "\M-n"  (lambda () (interactive) (scroll-up   4)))
+(global-set-key "\M-p"  (lambda () (interactive) (scroll-down 4)))
 
 (setq-default indent-tabs-mode nil)
 
-
-
 ;;================================================================
-(add-hook 'eshell-mode-hook 
-          (lambda () 
+(add-hook 'eshell-mode-hook
+          (lambda ()
             (local-set-key [home] 'eshell-backward-argument)))
 
-(add-hook  
- 'eshell-first-time-mode-hook 
- (lambda () 
-   (setq  
-    eshell-visual-commands  
-    (append 
-     '("mutt" "vim" "screen" "lftp" "ipython" "telnet") 
+(add-hook
+ 'eshell-first-time-mode-hook
+ (lambda ()
+   (setq
+    eshell-visual-commands
+    (append
+     '("mutt" "vim" "screen" "lftp" "ipython" "telnet")
      eshell-visual-commands))))
 ;;================================================================
 
@@ -378,8 +344,7 @@ that was stored with ska-point-to-register."
 (setq gud-tooltip-mouse-motions-active nil)
 
 (setq grep-find-command
-      "emcgrep | xargs -0e grep -nHE \"\"")
-
+      "emcgrep | xargs -0 grep -nHE \"\"")
 
 ;; (setq grep-find-command
 ;;       "find -iregex '.*\\.\\(cpp\\|c\\|s\\|sh\\|java\\|xml\\|h\\|hpp\\|inl\\)$' -print0 | xargs -0e grep -nHE ")
@@ -409,4 +374,5 @@ that was stored with ska-point-to-register."
 (add-hook 'makefile-mode-hook 'my-makefile-mode-hook)
 
 (define-key global-map [(control f12)] 'org-agenda-open-link)
+(setq scroll-preserve-screen-position t) ;so important for richard luo!
 (provide 'init-misc)
