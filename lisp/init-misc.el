@@ -374,5 +374,6 @@ that was stored with ska-point-to-register."
 (add-hook 'makefile-mode-hook 'my-makefile-mode-hook)
 
 (define-key global-map [(control f12)] 'org-agenda-open-link)
+(setq global-auto-revert-mode nil)
 (setq scroll-preserve-screen-position t) ;so important for richard luo!
 (provide 'init-misc)
