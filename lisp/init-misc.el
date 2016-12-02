@@ -376,4 +376,5 @@ that was stored with ska-point-to-register."
 (define-key global-map [(control f12)] 'org-agenda-open-link)
 (setq global-auto-revert-mode nil)
 (setq scroll-preserve-screen-position t) ;so important for richard luo!
+(setq scroll-preserve-screen-position t)
 (provide 'init-misc)
