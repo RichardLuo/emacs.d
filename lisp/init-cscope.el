@@ -1,4 +1,4 @@
-(require 'xcscope)
+(require 'xxcscope)
 
 ;; told emacs do not update database evey time.
 (setq cscope-do-not-update-database t)
