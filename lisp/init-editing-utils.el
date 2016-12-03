@@ -26,7 +26,7 @@
  scroll-margin 3
  scroll-conservatively 10000
  set-mark-command-repeat-pop t
- show-trailing-whitespace t
+ show-trailing-whitespace nil
  tooltip-delay 1.5
  truncate-lines nil
  truncate-partial-width-windows nil
