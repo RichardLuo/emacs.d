@@ -3,8 +3,7 @@
 ;; (add-to-list 'load-path "~/.libs.emacs/semantic/")
 ;; (require 'ecb)
 
-(setq default-tab-width 4) 
-
+(setq default-tab-width 4)
 ;; Visual feedback on selections
 (setq-default transient-mark-mode t)
 
@@ -19,7 +18,7 @@
 
 ;; no backup file
 ;;(setq-default make-backup-files nil)
-(setq make-backup-files nil) 
+(setq make-backup-files nil)
 
 
 ;; replace yes/no with y/n
@@ -68,7 +67,7 @@
 
 ;;================================================================
 ;; settings of cvs
-(setq cvs-dired-use-hook 'always) 
+(setq cvs-dired-use-hook 'always)
 (define-key global-map "\C-xve" 'cvs-examine)
 
 ;;================================================================
@@ -120,8 +119,8 @@ occurence of CHAR."
 
 ;;-------------------------------------------------------------------------
 (defun ska-point-to-register()
-  "Store cursorposition _fast_ in a register. 
-Use ska-jump-to-register to jump back to the stored 
+  "Store cursorposition _fast_ in a register.
+Use ska-jump-to-register to jump back to the stored
 position."
   (interactive)
   (setq zmacs-region-stays t)
@@ -203,11 +202,11 @@ that was stored with ska-point-to-register."
 (defun recentf-open-files-compl ()
   (interactive)
   (let* ((all-files recentf-list)
-	 (tocpl (mapcar (function 
+	 (tocpl (mapcar (function
 			 (lambda (x) (cons (file-name-nondirectory x) x))) all-files))
 	 (prompt (append '("File name: ") tocpl))
 	 (fname (completing-read (car prompt) (cdr prompt) nil nil)))
-    (find-file (cdr (assoc-ignore-representation fname tocpl))))) 
+    (find-file (cdr (assoc-ignore-representation fname tocpl)))))
 (global-set-key [(control x)(control r)] 'recentf-open-files-compl)
 
 
@@ -313,7 +312,7 @@ that was stored with ska-point-to-register."
 ;; (require 'swbuff)
 ;; (global-set-key [C-S-iso-lefttab] 'swbuff-switch-to-previous-buffer)
 ;; (global-set-key [C-tab] 'swbuff-switch-to-next-buffer)
-;; (setq swbuff-exclude-buffer-regexps 
+;; (setq swbuff-exclude-buffer-regexps
 ;; 	  '("^ " "\\*.*\\*"))
 ;; (setq swbuff-status-window-layout 'scroll)
 ;; (setq swbuff-clear-delay 2)
@@ -321,7 +320,7 @@ that was stored with ska-point-to-register."
 ;; (setq swbuff-window-min-text-height 1)
 ;; (autoload 'table-insert "table" "WYGIWYS table editor")
 
-(setq-default nuke-trailing-whitespace-p t)  
+(setq-default nuke-trailing-whitespace-p t)
 
 (add-to-list 'auto-mode-alist '("\\.hla\\'" . asm-mode))
 
