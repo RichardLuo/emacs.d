@@ -62,7 +62,8 @@
 (require 'init-ido)
 (require 'init-yasnippet)
 (require 'init-hippie-expand)
-(require 'init-auto-complete)
+;; (require 'init-auto-complete)
+
 ;; (require 'init-windows)
 ;; (require 'init-sessions)
 (require 'init-fonts)
@@ -154,6 +155,6 @@
 ;;              (message "init completed in %.2fms"
 ;;                       (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
+(require 'init-hooks)
 (require 'init-themes)
-
 (provide 'init)
