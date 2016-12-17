@@ -53,6 +53,7 @@
 ;; (require 'init-uniquify)
 ;; (require 'init-ibuffer)
 ;; (require 'init-flycheck)
+(require 'init-git)
 
 (require 'init-recentf)
 (require 'init-gui)
@@ -61,7 +62,7 @@
 (require 'init-eshell)
 (require 'init-ido)
 (require 'init-yasnippet)
-(require 'init-hippie-expand)
+;; (require 'init-hippie-expand)
 ;; (require 'init-auto-complete)
 
 ;; (require 'init-windows)
@@ -75,7 +76,6 @@
 
 ;; (require 'init-vc)
 ;; (require 'init-darcs)
-(require 'init-git)
 
 ;; (require 'init-crontab)
 ;; (require 'init-textile)
@@ -157,4 +157,5 @@
 
 (require 'init-hooks)
 (require 'init-themes)
+(require 'init-ccmode)
 (provide 'init)
