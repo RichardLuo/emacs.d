@@ -17,7 +17,6 @@
 (ac-set-trigger-key "TAB")
 ;; (setq-default ac-dwim nil)
 
-
 ;; use pos-tip instead of popup
 (require-package 'pos-tip)
 (require 'pos-tip)
@@ -41,6 +40,6 @@
                ac-source-yasnippet)))
 
 ;; add custom sources
-(require 'init-ac-source)
+;;;; (require 'init-ac-source)
 
 (provide 'init-auto-complete)
