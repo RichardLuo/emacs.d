@@ -69,7 +69,7 @@
 ;; (require 'init-sessions)
 (require 'init-fonts)
 ;; (require 'init-mmm)
-(require 'init-tabbar)
+;; (require 'init-tabbar)
 (require 'init-editing-utils)
 ;; (require 'init-evil)
 ;; (require 'init-matlab)
