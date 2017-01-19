@@ -53,7 +53,7 @@
 ;; (require 'init-uniquify)
 ;; (require 'init-ibuffer)
 ;; (require 'init-flycheck)
-(require 'init-git)
+;; (require 'init-git)
 
 (require 'init-recentf)
 (require 'init-gui)
@@ -85,7 +85,7 @@
 ;; (require 'init-erlang)
 ;; (require 'init-javascript)
 ;; (require 'init-php)
-(require 'init-org)
+;; (require 'init-org)
 ;; (require 'init-nxml)
 ;; (require 'init-html)
 ;; (require 'init-css)
@@ -155,6 +155,7 @@
 ;;              (message "init completed in %.2fms"
 ;;                       (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
+(require 'init-clips)
 (require 'init-hooks)
 (require 'init-themes)
 (require 'init-ccmode)
