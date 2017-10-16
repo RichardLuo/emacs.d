@@ -168,9 +168,9 @@ that was stored with ska-point-to-register."
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(require 'browse-kill-ring)
-(global-set-key [(control c)(k)] 'browse-kill-ring)
-(browse-kill-ring-default-keybindings)
+;; (require 'browse-kill-ring)
+;; (global-set-key [(control c)(k)] 'browse-kill-ring)
+;; (browse-kill-ring-default-keybindings)
 
 ;; (setq x-alt-keysym 'meta)
 (global-set-key "\M-n"  (lambda () (interactive) (scroll-up   4)))
