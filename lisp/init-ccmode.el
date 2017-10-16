@@ -16,6 +16,9 @@
   (define-key c-mode-base-map [(control c) (control d)] 'c-down-conditional-with-else)
   )
 
+(modify-syntax-entry ?_ "w" c-mode-syntax-table)
+(modify-syntax-entry ?_ "w" c++-mode-syntax-table)
+
 ;; (define-key global-map (kbd "s-x") 'semantic-ia-complete-symbol-menu)
 ;; (setq c-macro-prompt-flag t)
 
