@@ -1,7 +1,7 @@
 (add-to-list 'load-path (expand-file-name "lisp/editing-utils" user-emacs-directory))
 ;; enhanced help mechanism
-(require-package 'help-fns+)
-(require 'help-fns+)
+;; (require-package 'help-fns+)
+;; (require 'help-fns+)
 
 ;; dimish minor mode name to save mode line space
 (require-package 'diminish)
@@ -115,7 +115,7 @@
 ;; (global-set-key (kbd "C-c c a") 'mc/edit-beginnings-of-lines)
 
 ;; switch-window
-(require 'init-switch-window)
+;; (require 'init-switch-window)
 ;; Set "C-x p" to select the previous window
 (defun other-window-backward (&optional n)
   "Select the Nth previous window"
