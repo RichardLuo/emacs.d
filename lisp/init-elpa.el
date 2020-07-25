@@ -31,10 +31,10 @@
                `("gnu" . ,(add-address-prefix "elpa.gnu.org/packages/"))))
 
 ;;; Also use Melpa for most packages
-(add-to-list 'package-archives
-             `("melpa" . ,(add-address-prefix "melpa.org/packages/")))
-(add-to-list 'package-archives
-             `("melpa-stable" . ,(add-address-prefix "stable.melpa.org/packages/")))
+;; (add-to-list 'package-archives
+;;              `("melpa" . ,(add-address-prefix "melpa.org/packages/")))
+;; (add-to-list 'package-archives
+;;              `("melpa-stable" . ,(add-address-prefix "stable.melpa.org/packages/")))
 
 
 ;; If gpg cannot be found, signature checking will fail, so we
@@ -78,6 +78,17 @@ locate PACKAGE."
 
 ;;; Fire up package.el
 (setq package-enable-at-startup nil)
+
+;;(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+;;                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+;; (package-initialize) ;; You might already have this line
+
+;; (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+;;                          ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 ;; The cl-lib is distributed with Emacs >= 24.3 and is required by many packages.
