@@ -104,6 +104,7 @@ Suitable for inclusion in `c-offsets-alist'."
                         (arglist-close . c-lineup-arglist)
                         (topmost-intro . 0)
                         (block-open . 0)
+                        (inlambda . 0)
                         (inline-open . 0)
                         (substatement-open . 0)
                         (statement-cont
