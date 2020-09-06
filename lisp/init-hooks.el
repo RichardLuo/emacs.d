@@ -61,4 +61,19 @@
                    (concat "make "
                            )))))
 
+(defun my-find-file-check-make-large-file-read-only-hook ()
+  "If a file is over a given size, make the buffer read only."
+  (when (> (buffer-size) (* 1024 1024))
+    (setq buffer-read-only t)
+    ;; (yas-minor-mode -1)
+    (whole-line-or-region-local-mode -1)
+    (buffer-disable-undo)
+    (fundamental-mode)))
+
+(defun disable-yas-if-no-snippets ()
+    (yas-minor-mode -1))
+
+(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
+;; (add-hook 'find-file-hook 'disable-yas-if-no-snippets)
+
 (provide 'init-hooks)

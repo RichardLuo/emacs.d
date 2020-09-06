@@ -32,7 +32,7 @@
 ;; should come before all package-related config files
 (require 'init-elpa)
 (require 'init-exec-path) ;; Set up $PATH
-
+(require 'init-kill-ring)
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
@@ -53,7 +53,7 @@
 ;; (require 'init-uniquify)
 ;; (require 'init-ibuffer)
 ;; (require 'init-flycheck)
-;; (require 'init-git)
+(require 'init-git)
 
 (require 'init-recentf)
 (require 'init-gui)
@@ -61,7 +61,6 @@
 (require 'init-cscope)
 (require 'init-eshell)
 (require 'init-ido)
-(require 'init-yasnippet)
 ;; (require 'init-hippie-expand)
 ;; (require 'init-auto-complete)
 
@@ -155,8 +154,23 @@
 ;;              (message "init completed in %.2fms"
 ;;                       (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
-(require 'init-clips)
+;; (require 'init-clips)
+(require 'init-ccmode)
 (require 'init-hooks)
 (require 'init-themes)
-(require 'init-ccmode)
+(require 'init-yasnippet)
 (provide 'init)
+
+
+;; Auto add HEADER in new file
+(add-hook 'find-file-hook
+          '(lambda ()
+             (when (and (buffer-file-name)
+                        (not (file-exists-p (buffer-file-name)))
+                        (= (point-max) 1))
+               (let ((header-snippet "HEADER")
+                     (yas/fallback-behavior 'return-nil))
+                 (insert header-snippet)
+                 ;; if can't expand snippet, delete insert string
+                 (if (not (yas/expand))
+                     (delete-region (point-min) (point-max)))))))

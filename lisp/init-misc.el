@@ -168,6 +168,11 @@ that was stored with ska-point-to-register."
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+(global-set-key (kbd "C-c j") 'avy-goto-char)
+(global-set-key (kbd "C-c k") 'avy-goto-char-timer)
+(global-set-key (kbd "C-c l") 'avy-goto-line)
+(global-set-key (kbd "C-c w") 'avy-goto-word-0)
+
 ;; (require 'browse-kill-ring)
 ;; (global-set-key [(control c)(k)] 'browse-kill-ring)
 ;; (browse-kill-ring-default-keybindings)
@@ -320,8 +325,6 @@ that was stored with ska-point-to-register."
 ;; (setq swbuff-window-min-text-height 1)
 ;; (autoload 'table-insert "table" "WYGIWYS table editor")
 
-(setq-default nuke-trailing-whitespace-p t)
-
 (add-to-list 'auto-mode-alist '("\\.hla\\'" . asm-mode))
 
 ;; (define-key global-map [(s f)]  'find-grep-dired)
@@ -376,4 +379,29 @@ that was stored with ska-point-to-register."
 (setq global-auto-revert-mode nil)
 (setq scroll-preserve-screen-position t) ;so important for richard luo!
 (setq scroll-preserve-screen-position t)
+
+
+(defun modi/revert-all-file-buffers ()
+  "Refresh all open file buffers without confirmation.
+Buffers in modified (not yet saved) state in emacs will not be reverted. They
+will be reverted though if they were modified outside emacs.
+Buffers visiting files which do not exist any more or are no longer readable
+will be killed."
+  (interactive)
+  (dolist (buf (buffer-list))
+    (let ((filename (buffer-file-name buf)))
+      ;; Revert only buffers containing files, which are not modified;
+      ;; do not try to revert non-file buffers like *Messages*.
+      (when (and filename
+                 (not (buffer-modified-p buf)))
+        (if (file-readable-p filename)
+            ;; If the file exists and is readable, revert the buffer.
+            (with-current-buffer buf
+              (revert-buffer :ignore-auto :noconfirm :preserve-modes))
+          ;; Otherwise, kill the buffer.
+          (let (kill-buffer-query-functions) ; No query done when killing buffer
+            (kill-buffer buf)
+            (message "Killed non-existing/unreadable file buffer: %s" filename))))))
+  (message "Finished reverting buffers containing unmodified files."))
+
 (provide 'init-misc)
