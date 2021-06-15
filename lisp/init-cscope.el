@@ -41,13 +41,13 @@
      ( "/home/richard/ddbs/build" )
      ( "/home/richard/ddbs/system" )
      ( "/home/richard/ddbs/external" )
-     ( "/media/psf/share/sillicon/znet-v2.5" )
+     ;; ( "/media/psf/share/sillicon/znet-v2.5" )
      )
 
    ( "^/media/psf/share/sillicon/znet-v2.5"
-     ( "/home/richard/ddbs/frameworks" )
+     ;; ( "/home/richard/ddbs/frameworks" )
      ( "/media/psf/share/sillicon/znet-v2.5" )
-     ( "/home/richard/ddbs/external" )
+     ;; ( "/home/richard/ddbs/external" )
      )
 
    ( "^/data/ddbs"
