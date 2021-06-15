@@ -86,9 +86,14 @@ locate PACKAGE."
 ;; (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
 ;;                          ("melpa" . "http://elpa.emacs-china.org/melpa/")))
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
+;;                          ("melpa" . "http://melpa.org/packages/")))
+
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+
+
 (package-initialize)
 
 ;; The cl-lib is distributed with Emacs >= 24.3 and is required by many packages.
