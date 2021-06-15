@@ -1,5 +1,10 @@
 ;; enable ido-mode, flexible-matching, virtual-buffer
 (require 'ido)
+
+(defvar ido-cur-item nil)
+(defvar ido-default-item nil)
+(defvar ido-cur-list nil)
+
 (ido-mode t)
 (ido-everywhere t)
 (setq ido-enable-flex-matching t)
