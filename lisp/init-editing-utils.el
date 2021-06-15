@@ -76,19 +76,19 @@
 ;; (diminish 'global-visual-line-mode)
 (diminish 'visual-line-mode)
 
-;; expand-region
-(require-package 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
+;; ;; expand-region
+;; (require-package 'expand-region)
+;; (global-set-key (kbd "C-=") 'er/expand-region)
 
-;; enable uppercase and lowercase transform for region
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
+;; ;; enable uppercase and lowercase transform for region
+;; (put 'upcase-region 'disabled nil)
+;; (put 'downcase-region 'disabled nil)
 
-;; whole-line-or-region-mode
-(require-package 'whole-line-or-region)
-(whole-line-or-region-mode t)
-(diminish 'whole-line-or-region-mode)
-(make-variable-buffer-local 'whole-line-or-region-mode)
+;; ;; whole-line-or-region-mode
+;; (require-package 'whole-line-or-region)
+;; (whole-line-or-region-mode t)
+;; (diminish 'whole-line-or-region-mode)
+;; (make-variable-buffer-local 'whole-line-or-region-mode)
 
 ;; enable cua mode without prefix key
 (cua-selection-mode t)

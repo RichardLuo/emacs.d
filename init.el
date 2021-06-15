@@ -1,4 +1,3 @@
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -48,7 +47,7 @@
 ;; (require 'init-osx-keys)
 ;; (require 'init-gui-frames)
 ;; (require 'init-proxies)
-(require 'init-dired)
+;; (require 'init-dired)
 ;; (require 'init-isearch)
 ;; (require 'init-uniquify)
 ;; (require 'init-ibuffer)
@@ -60,7 +59,6 @@
 (require 'init-misc)
 (require 'init-cscope)
 (require 'init-eshell)
-(require 'init-ido)
 ;; (require 'init-hippie-expand)
 ;; (require 'init-auto-complete)
 
@@ -156,11 +154,14 @@
 
 ;; (require 'init-clips)
 (require 'init-ccmode)
-(require 'init-hooks)
+;; (require 'init-hooks)
 (require 'init-themes)
 (require 'init-yasnippet)
-(provide 'init)
+(require 'init-ido)
+;; (require 'init-ivy)
+;; (require 'ivy_buffer_extend)
 
+(global-set-key "\C-c\ f" 'counsel-recentf)
 
 ;; Auto add HEADER in new file
 (add-hook 'find-file-hook
@@ -174,3 +175,28 @@
                  ;; if can't expand snippet, delete insert string
                  (if (not (yas/expand))
                      (delete-region (point-min) (point-max)))))))
+
+
+(defun my-find-file-check-make-large-file-read-only-hook ()
+  "If a file is over a given size, make the buffer read only."
+  (when (> (buffer-size) (* 1024 1024))
+    (setq buffer-read-only t)
+    (buffer-disable-undo)
+    (fundamental-mode)))
+
+(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
+
+
+;; ;; 打开 org-indent mode
+;; (setq org-startup-indented t)
+;; ;; 设置 bullet list
+;; (setq org-bullets-bullet-list '("☰" "☷" "☯" "☭"))
+
+;; (global-set-key (kbd "C-x 0") 'sticky-window-delete-window)
+
+(setq gdb-display-io-nopopup t)
+
+(provide 'init)
+
+
+
