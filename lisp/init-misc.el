@@ -404,4 +404,13 @@ will be killed."
             (message "Killed non-existing/unreadable file buffer: %s" filename))))))
   (message "Finished reverting buffers containing unmodified files."))
 
+;; (require 'ivy)
+;; (use-package ivy
+;;   :ensure t
+;;   :diminish ivy-mode
+;;   :hook (after-init . ivy-mode))
+
+(add-hook 'c-mode-hook (lambda () (modify-syntax-entry ?_ "w")))
+(add-hook 'c++-mode-hook (lambda () (modify-syntax-entry ?_ "w")))
+
 (provide 'init-misc)
