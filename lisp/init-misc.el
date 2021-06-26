@@ -6,6 +6,7 @@
 (setq default-tab-width 4)
 ;; Visual feedback on selections
 (setq-default transient-mark-mode t)
+(global-set-key "\C-h" 'backward-delete-char-untabify)
 
 ;; Always end a file with a newline
 ;;(setq require-final-newline nil)
