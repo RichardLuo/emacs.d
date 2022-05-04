@@ -41,7 +41,7 @@
 ;;       auto-revert-verbose t)
 
 ;; enable auto-pairing
-(require 'init-autopair)
+;; (require 'init-autopair)
 (diminish 'autopair-mode)
 
 ;; some personal key bindings
