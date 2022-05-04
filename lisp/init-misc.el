@@ -413,4 +413,24 @@ will be killed."
 (add-hook 'c-mode-hook (lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'c++-mode-hook (lambda () (modify-syntax-entry ?_ "w")))
 
+
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match
+that used by the user's shell.
+
+This is particularly useful under Mac OS X and macOS, where GUI
+apps are not started from a shell."
+  (interactive)
+  (let ((path-from-shell (replace-regexp-in-string
+			  "[ \t\n]*$" "" (shell-command-to-string
+					  "$SHELL --login -c 'echo $PATH'"
+						    ))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(set-exec-path-from-shell-PATH)
+
+;; (setenv "PATH" (concat (getenv "PATH") ":/Applications/Simplicity\ Studio\ 2.app/Contents/Eclipse/developer/toolchains/gnu_arm/7.2_2017q4/bin"))
+;; (setq exec-path (append exec-path '("/Applications/Simplicity\ Studio\ 2.app/Contents/Eclipse/developer/toolchains/gnu_arm/7.2_2017q4/bin")))
+
 (provide 'init-misc)
