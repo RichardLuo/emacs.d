@@ -105,6 +105,21 @@ FILENAME defaults to `buffer-file-name'."
 
 (global-set-key "\C-z" 'eshell)
 (define-key global-map (kbd "s-z") 'shell)
+
+(setq eshell-prompt-function
+      (lambda ()
+        (concat
+         (propertize "┌─[" 'face `(:foreground "gray"))
+         (propertize (user-login-name) 'face `(:foreground "gray"))
+         (propertize "@" 'face `(:foreground "gray"))
+         (propertize (system-name) 'face `(:foreground "gray"))
+         (propertize "]──[" 'face `(:foreground "gray"))
+         (propertize (format-time-string "%H:%M" (current-time)) 'face `(:foreground "gray"))
+         (propertize "]──[" 'face `(:foreground "gray"))
+         (propertize (concat (eshell/pwd)) 'face `(:foreground "gray"))
+         (propertize "]\n" 'face `(:foreground "gray"))
+         (propertize "└─>" 'face `(:foreground "gray"))
+         (propertize (if (= (user-uid) 0) " # " " $ ") 'face `(:foreground "white"))
+         )))
+
 (provide 'init-eshell)
-
-
