@@ -19,9 +19,19 @@
 ;;;         ))
 ;;;       (setq default-frame-alist (append '((font . "fontset-courier")) default-frame-alist))
 
-      (set-default-font "Monaco-23")
-       (set-fontset-font "fontset-default"
-                         'gb18030' ("Microsoft YaHei" . "unicode-bmp"))
+
+          (set-frame-font "Monaco:pixelsize=17")
+          (dolist (charset '(han kana symbol cjk-misc bopomofo))
+            (set-fontset-font (frame-parameter nil 'font)
+                              charset
+                              (font-spec :family "Hiragino Sans GB" :size 15)
+                              ))
+
+
+;;	  (set-face-attribute ‘default nil :font “SF Mono-12”)
+;;      (set-default-font "Monaco-23")
+      ;;  (set-fontset-font "fontset-default"
+      ;;                    'gb18030' ("Microsoft YaHei" . "unicode-bmp"))
 
 ;;      (set-default-font "fontset-courier")
 ;;      (set-default-font "YaHeiMono-12")
