@@ -1,0 +1,200 @@
+(require 'package)
+
+;;
+;; set autosave and backup directory
+;;
+(defconst emacs-tmp-dir (format "%s%s%s/" temporary-file-directory "emacs" (user-uid)))
+(setq backup-directory-alist `((".*" . ,emacs-tmp-dir)))
+(setq auto-save-file-name-transforms `((".*" ,emacs-tmp-dir t)))
+(setq auto-save-list-file-prefix emacs-tmp-dir)
+
+;;
+;; custome variable path
+;;
+(setq custom-file "~/.emacs.d/custom-variables.el")
+(when (file-exists-p custom-file)
+    (load custom-file))
+
+
+;;
+;; use use-package
+;;
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+
+(use-package diminish :ensure t)
+(use-package bind-key :ensure t)
+
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
+;;
+;; basic setup
+;;
+(menu-bar-mode -1)
+
+(show-paren-mode t)
+(electric-pair-mode t)
+
+(setq electric-pair-pairs '(
+			    (?\' . ?\')
+			    ))
+
+(setq-default indent-tabs-mode nil)
+
+(winner-mode t)
+
+;;
+;; hideshow
+;;
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
+
+;;
+;; multiple cursors
+;;
+(use-package multiple-cursors
+  :ensure t
+  :bind (
+         ("M-3" . mc/mark-next-like-this)
+         ("M-4" . mc/mark-previous-like-this)
+         :map ctl-x-map
+         ("\C-m" . mc/mark-all-dwim)
+         ("<return>" . mule-keymap)
+         ))
+
+;;
+;; ivy mode
+;;
+(use-package ivy
+  :ensure t
+  :diminish (ivy-mode . "")
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virutal-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-height 10)
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-count-format "%d/%d")
+  (setq ivy-re-builders-alist
+        `((t . ivy--regex-ignore-order)))
+  )
+
+;;
+;; counsel
+;;
+(use-package counsel
+  :ensure t
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)))
+
+;;
+;; swiper
+;;
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper))
+  )
+
+;;
+;; yasnippet
+;;
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode)
+  (use-package yasnippet-snippets :ensure t)
+  )
+
+;; http://blog.binchen.org/posts/use-ivy-to-open-recent-directories.html
+;; https://emacs-china.org/t/topic/5948/3?u=et2010
+(defvar counsel-recent-dir--selected "~/")
+
+(defvar counsel-recent-dir--map (let ((map (make-sparse-keymap)))
+                                  (define-key map  (kbd "TAB") 'counsel-recent-dir--find-file)
+                                  (define-key map  [(tab)] 'counsel-recent-dir--find-file)
+                                  map))
+
+(defun counsel-recent-dir--find-file()
+  (interactive)
+  (ivy-exit-with-action
+   (lambda(c)
+     (setq counsel-recent-dir--selected c)
+     (run-at-time 0.05 nil (lambda()
+                             (let ((default-directory counsel-recent-dir--selected))
+                               ;; (find-file counsel-recent-dir--selected)
+                               (counsel-find-file)))))))
+
+(defun counsel-recent-directory ()
+  "Open recent directory with dired"
+  (interactive)
+  (unless recentf-mode (recentf-mode 1))
+  (let ((collection
+         (delete-dups
+          (append (mapcar 'file-name-directory recentf-list)
+                  ;; fasd history
+                  (if (executable-find "fasd")
+                      (split-string (shell-command-to-string "fasd -ld") "\n" t))))))
+    (ivy-read "directories:" collection
+              :keymap counsel-recent-dir--map
+              :action (lambda (x) (if (fboundp 'ranger) (ranger x) (dired x))))))
+
+
+
+
+
+
+(defun xah-search-current-word ()
+  "Call `isearch' on current word or text selection.
+“word” here is A to Z, a to z, and hyphen 「-」 and underline 「_」, independent of syntax table.
+URL `http://ergoemacs.org/emacs/modernization_isearch.html'
+Version 2015-04-09"
+  (interactive)
+  (let ( $p1 $p2 )
+    (if (use-region-p)
+        (progn
+          (setq $p1 (region-beginning))
+          (setq $p2 (region-end)))
+      (save-excursion
+        (skip-chars-backward "-_A-Za-z0-9")
+        (setq $p1 (point))
+        (right-char)
+        (skip-chars-forward "-_A-Za-z0-9")
+        (setq $p2 (point))))
+    (setq mark-active nil)
+    (when (< $p1 (point))
+      (goto-char $p1))
+    (isearch-mode t)
+    (isearch-yank-string (buffer-substring-no-properties $p1 $p2))))
+
+;; (global-set-key "\C-s" 'xah-search-current-word)
+;; (global-set-key "\C-s" 'isearch-forward)
+
+;; version of ivy-yank-word to yank from start of word
+(defun bjm/ivy-yank-whole-word ()
+  "Pull next word from buffer into search string."
+  (interactive)
+  (let (amend)
+    (with-ivy-window
+      ;;move to last word boundary
+      (re-search-backward "\\b")
+      (let ((pt (point))
+            (le (line-end-position)))
+        (forward-word 1)
+        (if (> (point) le)
+            (goto-char pt)
+          (setq amend (buffer-substring-no-properties pt (point))))))
+    (when amend
+      (insert (replace-regexp-in-string "  +" " " amend)))))
+
+;; bind it to M-j
+(define-key ivy-minibuffer-map (kbd "M-j") 'bjm/ivy-yank-whole-word)
+
+
+(provide 'init-ivy)
