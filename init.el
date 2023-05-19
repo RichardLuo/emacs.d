@@ -2,7 +2,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;; (package-initialize)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -13,8 +13,8 @@
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-;; (require 'init-compat)
 (require 'init-utils)
+;; (require 'init-company)
 
 ;; Needed for Emacs version < 24. must come before elpa, as it may provide package.el
 ;; (require 'init-site-lisp)
@@ -53,9 +53,10 @@
 ;; (require 'init-ibuffer)
 ;; (require 'init-flycheck)
 (require 'init-git)
+(require 'init-gdb)
 
 (require 'init-recentf)
-(require 'init-gui)
+;; (require 'init-gui)
 (require 'init-misc)
 (require 'init-cscope)
 (require 'init-eshell)
@@ -197,6 +198,4 @@
 (setq gdb-display-io-nopopup t)
 
 (provide 'init)
-
-
 

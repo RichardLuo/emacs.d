@@ -1,4 +1,5 @@
 (require 'xxcscope)
+;; (cscope-setup)
 
 ;; told emacs do not update database evey time.
 (setq cscope-do-not-update-database t)
@@ -41,72 +42,58 @@
      ( "/home/richard/ddbs/build" )
      ( "/home/richard/ddbs/system" )
      ( "/home/richard/ddbs/external" )
-     ;; ( "/media/psf/share/sillicon/znet-v2.5" )
      )
 
    ( "^/media/psf/share/sillicon/znet-v2.5"
-     ;; ( "/home/richard/ddbs/frameworks" )
      ( "/media/psf/share/sillicon/znet-v2.5" )
-     ;; ( "/home/richard/ddbs/external" )
      )
 
-   ( "^/data/ddbs"
-     ( "/data/ddbs/frameworks" )
-     ( "/data/ddbs/bionic" )
-     ( "/data/ddbs/system" )
-     ( "/data/ddbs/build" )
-     ( "/data/ddbs/external" )
+   ( "^/media/psf/share/xyan-znet-sdk/v3.1"
+     ( "/media/psf/share/xyan-znet-sdk/v3.1/protocol/zigbee/" )
+     ( "/media/psf/share/xyan-znet-sdk/v3.1/platform/base/" )
+     ( "/media/psf/share/xyan-znet-sdk/v3.1/util/" )
+     ( "/media/psf/share/xyan-znet-sdk/v3.1/platform/emdrv/" )
+     ( "/media/psf/share/xyan-znet-sdk/v3.1/platform/service/" )
+     ( "/media/psf/share/xyan-znet-sdk/v3.1/platform/common/" )
      )
 
-   ( "^/data/bsdd"
-     ( "/data/bsdd/frameworks" )
-     ( "/data/bsdd/system" )
-     ( "/data/bsdd/bionic" )
-     ( "/data/bsdd/build" )
-     ( "/data/bsdd/external" )
+   ( "^/media/psf/share/xyan-znet-sdk/cpc-daemon"
+     ( "/media/psf/share/xyan-znet-sdk/cpc-daemon/" )
+     ( "/media/psf/share/xyan-znet-sdk/gsdk/util/third_party/openthread/" )
+     ( "/media/psf/share/xyan-znet-sdk/gsdk/protocol/zigbee/" )
      )
 
-   ( "^/data/rowboat"
-     ( "/data/rowboat/frameworks" )
-     ( "/data/rowboat/bionic" )
-     ( "/data/rowboat/build" )
-     ( "/data/rowboat/system" )
-     ( "/data/rowboat/external" )
-     )
+     ( "^/media/psf/share/xyan-znet-sdk/gsdk/util/third_party/openthread"
+       ( "/media/psf/share/xyan-znet-sdk/cpc-daemon/" )
+       ( "/media/psf/share/xyan-znet-sdk/gsdk/util/third_party/openthread/" )
+       ( "/media/psf/share/xyan-znet-sdk/gsdk/protocol/zigbee/" )
+       )
 
-   ( "^/media/psf/share/d-live-root"
-     ( "/media/psf/share/d-live-root" )
-     ;; ( "/home/richard/android-sdk/adt-bundle-linux-x86-20130522/sdk/samples/android-18" )
-     ;; ( "/home/richard/android-sdk/adt-bundle-linux-x86-20130522/sdk/sources/android-21" )
-     ;; ( "/home/richard/msrc/android-source/frameworks" )
-     )
-
-
-   ( "^/media/psf/share/adsamples/source/AnimTest01"
-     ( "/media/psf/share/adsamples/source/AnimTest01/app/src/main" )
-     ( "/home/richard/msrc/android-source/frameworks" )
-     ( "/home/richard/android-sdk/adt-bundle-linux-x86-20130522/sdk/sources/android-21" )
-     )
-
-   ( "^/home/richard/android-sdk/adt-bundle-linux-x86-20130522/sdk/samples/android-21"
-     ( "/home/richard/android-sdk/adt-bundle-linux-x86-20130522/sdk/samples/android-21" )
-     ( "/home/richard/android-sdk/adt-bundle-linux-x86-20130522/sdk/sources/android-21" )
-     )
-
-   ( "^/media/psf/share/droid-live/my_samples/ApiDemos"
-     ( "/media/psf/share/droid-live/my_samples/ApiDemos" )
-     ( "/home/richard/msrc/android-source/frameworks" )
-     )
-
-   ( "^/home/richard/msrc/android-source"
-     ( "/home/richard/msrc/android-source/frameworks" )
-     ( "/home/richard/msrc/android-source/dalvik" )
-     ( "/home/richard/msrc/android-source/development" )
-     ( "/home/richard/msrc/android-source/system" )
-     ;; ( "/home/richard/msrc/android-source/bionic" )
-     ;; ( "/home/richard/msrc/android-source/build" )
-     ;; ( "/home/richard/msrc/android-source/external" )
-     )
+     ( "^/media/psf/share/xyan-znet-sdk/gsdk/protocol/zigbee"
+       ( "/media/psf/share/xyan-znet-sdk/cpc-daemon/" )
+       ( "/media/psf/share/xyan-znet-sdk/gsdk/util/third_party/openthread/" )
+       ( "/media/psf/share/xyan-znet-sdk/gsdk/protocol/zigbee/" )
+       )
 ))
+
+;; (setq cscope-database-regexps
+;;       '(
+;;         ( "^/users/jdoe/sources/proj1"
+;;           ( t )
+;;           ( "/users/jdoe/sources/proj2")
+;;           ( "/users/jdoe/sources/proj3/mycscope.out")
+;;           ( "/users/jdoe/sources/proj4")
+;;           t
+;;           ( "/some/master/directory" ("-d" "-I/usr/local/include") )
+;;           )
+;;         ( "^/users/jdoe/sources/gnome/"
+;;           ( "/master/gnome/database" ("-d") )
+;;           )
+;;         ))
+
+
+(add-hook 'c-mode-common-hook
+	  '(lambda ()
+	    (require 'xxcscope)))
 
 (provide 'init-cscope)
