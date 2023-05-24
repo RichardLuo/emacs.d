@@ -164,6 +164,8 @@ that was stored with ska-point-to-register."
   )
 (global-set-key [(control ?\.)] 'ska-point-to-register)
 (global-set-key [(control ?\,)] 'ska-jump-to-register)
+(global-set-key (kbd "C-c .") 'ska-point-to-register)
+(global-set-key (kbd "C-c ,") 'ska-jump-to-register)
 
 ;;================================================================
 (require 'ibuffer)
