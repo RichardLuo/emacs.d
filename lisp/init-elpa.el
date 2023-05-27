@@ -24,11 +24,6 @@
 
 ;; We include the org repository for completeness, but don't normally
 ;; use it.
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives
-               `("gnu" . ,(add-address-prefix "elpa.gnu.org/packages/"))))
 
 ;;; Also use Melpa for most packages
 ;; (add-to-list 'package-archives
@@ -90,8 +85,16 @@ locate PACKAGE."
 ;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
 ;;                          ("melpa" . "http://melpa.org/packages/")))
 
-(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+(setq package-archives '(
+                         ("org"   . "https://orgmode.org/elpa/")
+                         ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+
+
+;; (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+;;                          ("org" . "https://orgmode.org/elpa/")
+;;                          ("elpa" . "https://elpa.gnu.org/packages/")))
+
 
 
 (package-initialize)
