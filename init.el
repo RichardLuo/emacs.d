@@ -234,5 +234,33 @@
   :config
   (pyvenv-mode 1))
 
-(provide 'init)
+;; (use-package vterm
+;;     :ensure t
+;;     :pin melpa
+;;     :bind (:map vterm-mode-map ("C-y" . vterm-yank))
+;;     :config (setq vterm-max-scrollback 100000))
 
+(use-package vterm
+  :commands vterm
+  :bind (:map vterm-mode-map ("C-y" . vterm-yank))
+  ;; :bind (:map vterm-mode-map ("<C-return>" . vterm-toggle-insert-cd))
+  :config
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *")  ;; Set this to match your custom shell prompt
+  (setq vterm-shell "zsh")                       ;; Set this to customize the shell to launch
+  (setq vterm-max-scrollback 10000))
+
+(use-package multi-vterm :ensure t)
+
+(global-set-key [C-f2] 'vterm-toggle)
+(global-set-key [f2] 'vterm-toggle-cd)
+
+;; you can cd to the directory where your previous buffer file exists
+;; after you have toggle to the vterm buffer with `vterm-toggle'.
+;; (define-key vterm-mode-map (kbd "<C-return>") 'vterm-toggle-insert-cd)
+
+;Switch to next vterm buffer
+;; (define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
+;Switch to previous vterm buffer
+;; (define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward)
+
+(provide 'init)
