@@ -91,7 +91,8 @@
 ;; (make-variable-buffer-local 'whole-line-or-region-mode)
 
 ;; enable cua mode without prefix key
-(cua-selection-mode t)
+
+;; (cua-selection-mode t)
 
 ;; use page-break-line to handle the ^L page-breaking symbol
 (require-package 'page-break-lines)
