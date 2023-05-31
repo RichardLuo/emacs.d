@@ -6,7 +6,7 @@
 (setq default-tab-width 4)
 ;; Visual feedback on selections
 (setq-default transient-mark-mode t)
-(global-set-key "\C-h" 'backward-delete-char-untabify)
+;; (global-set-key "\C-h" 'backward-delete-char-untabify)
 
 ;; Always end a file with a newline
 ;;(setq require-final-newline nil)
@@ -80,13 +80,8 @@
 
 ;; Set up some f-key shortcuts
 (global-set-key [S-f1]  'man)
-;; (global-set-key [f1] 'other-window)
-(global-set-key [f2]    'save-buffer)
-(global-set-key [f3]    'save-buffer)
-(global-set-key [f4]    'kill-this-buffer)
 (define-key global-map [(s r)]  'rename-buffer)
 (define-key global-map [(s t)]  'revert-buffer)
-;; (define-key global-map [(s o)]  'other-window)
 
 ;;================================================================
 ;;compile key binding.
