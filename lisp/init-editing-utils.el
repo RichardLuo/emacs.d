@@ -41,8 +41,8 @@
 ;;       auto-revert-verbose t)
 
 ;; enable auto-pairing
-(require 'init-autopair)
-(diminish 'autopair-mode)
+;; (require 'init-autopair)
+;; (diminish 'autopair-mode)
 
 ;; some personal key bindings
 (global-set-key (kbd "C-c r") 'replace-string)
