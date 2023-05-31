@@ -11,8 +11,9 @@
 (setq ido-use-virtual-buffers t)
 
 ;; use ido-ubiquitous
-(require-package 'ido-ubiquitous)
-(ido-ubiquitous-mode t)
+
+;; (require-package 'ido-ubiquitous)
+;; (ido-ubiquitous-mode t)
 
 ;; use smex to handle M-x
 (require-package 'smex)
