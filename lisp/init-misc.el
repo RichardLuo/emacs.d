@@ -85,7 +85,7 @@
 
 ;;================================================================
 ;;compile key binding.
-(global-set-key [f5]    'compile)
+;; (global-set-key [f5]    'compile)
 (global-set-key [f1]    'first-error)
 (global-set-key [f7]    'previous-error)
 (global-set-key [f8]    'next-error)
