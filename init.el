@@ -241,6 +241,8 @@
 ;;     :config (setq vterm-max-scrollback 100000))
 
 (use-package vterm
+  :ensure t
+  :pin melpa
   :commands vterm
   :bind (:map vterm-mode-map ("C-y" . vterm-yank))
   ;; :bind (:map vterm-mode-map ("<C-return>" . vterm-toggle-insert-cd))
