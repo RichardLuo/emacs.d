@@ -319,4 +319,6 @@
 ;Switch to previous vterm buffer
 ;; (define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward)
 
+(setq electric-pair-mode t)
+
 (provide 'init)
