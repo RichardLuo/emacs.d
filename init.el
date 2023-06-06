@@ -305,7 +305,7 @@
         (vterm-send-return)))))
 
 
-(use-package multi-vterm :ensure t)
+;; (use-package multi-vterm :ensure t)
 
 ;; (global-set-key [S-f2] 'vterm-toggle)
 ;; (global-set-key [f2] 'vterm-toggle-cd)
@@ -318,6 +318,27 @@
 ;; (define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
 ;Switch to previous vterm buffer
 ;; (define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward)
+
+;; (defun my-compilation-hook ()
+;;   (when (not (get-buffer-window "*compilation*"))
+;;     (save-selected-window
+;;       (save-excursion
+;;         (let* ((w (split-window-vertically))
+;;                (h (window-height w)))
+;;           (select-window w)
+;;           (switch-to-buffer "*compilation*")
+;;           (shrink-window (- h compilation-window-height)))))))
+;; (add-hook 'compilation-mode-hook 'my-compilation-hook)
+
+(add-hook 'python-mode-hook 'jedi:setup)
+
+(setq jedi:complete-on-dot t)
+
+(when (functionp 'jedi:setup)
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (setq jedi:complete-on-dot t))
+
+(setq lsp-enable-symbol-highlighting nil)
 
 (setq electric-pair-mode t)
 
