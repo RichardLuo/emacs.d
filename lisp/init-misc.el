@@ -408,7 +408,11 @@ will be killed."
 ;;   :diminish ivy-mode
 ;;   :hook (after-init . ivy-mode))
 
-(add-hook 'c-mode-hook (lambda () (modify-syntax-entry ?_ "w")))
-(add-hook 'c++-mode-hook (lambda () (modify-syntax-entry ?_ "w")))
+(defun misc:underscore-word-hook ()
+  "make under score a word character"
+  (modify-syntax-entry ?_ "w" (syntax-table)))
+
+(add-hook 'c-mode-hook (function misc:underscore-word-hook))
+(add-hook 'c++-mode-hook (function misc:underscore-word-hook))
 
 (provide 'init-misc)
