@@ -207,8 +207,7 @@
   :hook (lsp-mode . efs/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-  :config
-  (lsp-enable-which-key-integration t))
+)  
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -343,5 +342,46 @@
 (setq lsp-enable-symbol-highlighting nil)
 
 (setq electric-pair-mode t)
+
+
+;; (defun v-resize (key)
+;;    "interactively resize the window"  
+;;    (interactive "cHit =/- to enlarge/shrink") 
+;;      (cond                                  
+;;       ((eq key (string-to-char "="))
+;;           (enlarge-window 4)             
+;;           (call-interactively 'v-resize)) 
+;;        ((eq key (string-to-char "-"))                      
+;;           (enlarge-window -4)            
+;;           (call-interactively 'v-resize)) 
+;;        (t (push key unread-command-events))))
+
+
+(defun resize-window (&optional arg)    ; Hirose Yuuji and Bob Wiener
+  "*Resize window interactively."
+  (interactive "p")
+  (if (one-window-p) (error "Cannot resize sole window"))
+  (or arg (setq arg 1))
+  (let (c)
+    (catch 'done
+      (while t
+	(message
+	 "h=heighten, s=shrink, w=widen, n=narrow (by %d);  1-9=unit, q=quit"
+	 arg)
+	(setq c (read-char))
+	(condition-case ()
+	    (cond
+	     ((= c ?h) (enlarge-window arg))
+	     ((= c ?s) (shrink-window arg))
+	     ((= c ?w) (enlarge-window-horizontally arg))
+	     ((= c ?n) (shrink-window-horizontally arg))
+	     ((= c ?\^G) (keyboard-quit))
+	     ((= c ?q) (throw 'done t))
+	     ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
+             (t (throw 'done t)))
+	  (error (beep)))))
+    (message "Done.")))
+
+(global-set-key "\C-ce"  (lambda () (interactive) (resize-window 4)))
 
 (provide 'init)
