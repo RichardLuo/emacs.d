@@ -340,4 +340,6 @@
 
 (setq lsp-enable-symbol-highlighting nil)
 
+(setq electric-pair-mode t)
+
 (provide 'init)
