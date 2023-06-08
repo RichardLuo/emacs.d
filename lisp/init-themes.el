@@ -14,8 +14,8 @@
   )
 
 (when (eq system-type 'gnu/linux) ;; mac specific settings
-  (set-frame-font "Monaco:size=15")
-  (set-face-attribute 'default nil :font "Monaco-15")
+  (set-frame-font "Monaco-25")
+  (set-face-attribute 'default nil :font "Monaco-25")
   (setq default-frame-alist nil)
   (use-package doom-themes
     :init (load-theme 'doom-palenight t))
