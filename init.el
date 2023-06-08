@@ -344,19 +344,6 @@
 (setq electric-pair-mode t)
 
 
-;; (defun v-resize (key)
-;;    "interactively resize the window"  
-;;    (interactive "cHit =/- to enlarge/shrink") 
-;;      (cond                                  
-;;       ((eq key (string-to-char "="))
-;;           (enlarge-window 4)             
-;;           (call-interactively 'v-resize)) 
-;;        ((eq key (string-to-char "-"))                      
-;;           (enlarge-window -4)            
-;;           (call-interactively 'v-resize)) 
-;;        (t (push key unread-command-events))))
-
-
 (defun resize-window (&optional arg)    ; Hirose Yuuji and Bob Wiener
   "*Resize window interactively."
   (interactive "p")
