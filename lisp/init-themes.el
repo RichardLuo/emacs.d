@@ -6,8 +6,8 @@
 ;; (set-frame-size (selected-frame) 1300 820 t)
 
 (when (eq system-type 'darwin) ;; mac specific settings
-  (set-frame-font "Monaco:size=15")
-  (set-face-attribute 'default nil :font "Monaco-15")
+  (set-frame-font "Monaco-17")
+  (set-face-attribute 'default nil :font "Monaco-17")
   (setq default-frame-alist nil)
   (use-package nord-theme
     :init (load-theme 'nord t))
