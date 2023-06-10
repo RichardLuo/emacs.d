@@ -14,6 +14,9 @@
 ;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 (require 'init-utils)
 ;; (require 'init-company)
 
