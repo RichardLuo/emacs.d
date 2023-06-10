@@ -13,6 +13,7 @@
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
 (require 'init-utils)
 ;; (require 'init-company)
 
@@ -382,6 +383,14 @@
                 (define-key python-mode-map "(" 'electric-pair)
                 (define-key python-mode-map "[" 'electric-pair)
                 (define-key python-mode-map "{" 'electric-pair)))
+
+(add-hook 'c++-mode-hook
+              (lambda ()
+                (define-key c++-mode-map "\"" 'electric-pair)
+                (define-key c++-mode-map "\'" 'electric-pair)
+                (define-key c++-mode-map "(" 'electric-pair)
+                (define-key c++-mode-map "[" 'electric-pair)
+                (define-key c++-mode-map "{" 'electric-pair)))
 
 (setq electric-pair-mode t)
 
