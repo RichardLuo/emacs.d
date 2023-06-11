@@ -10,7 +10,6 @@
 
 (require 'package)
 
-
 ;;; Standard package repositories
 
 ;; decide whether to use secure connection for ELPA repositories

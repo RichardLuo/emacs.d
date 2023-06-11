@@ -18,7 +18,13 @@
   (set-face-attribute 'default nil :font "Monaco-25")
   (setq default-frame-alist nil)
   (use-package doom-themes
-    :init (load-theme 'doom-palenight t))
-  )
+    :init (load-theme 'doom-palenight t)))
+
+
+;; (add-hook 'after-make-frame-functions
+;;           (lambda ()
+;;             ;; we want some font only in GUI Emacs
+;;             (when (display-graphics-p)
+;;               (set-frame-font "DejaVu Sans Mono 28"))))
 
 (provide 'init-themes)

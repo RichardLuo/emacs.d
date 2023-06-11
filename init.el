@@ -20,6 +20,12 @@
 (require 'init-utils)
 ;; (require 'init-company)
 
+
+(require 'init-utils)
+(require 'init-elpa)
+;; (require 'init-ido)
+(require 'init-ivy)
+;; (require 'init-company)
 ;; Needed for Emacs version < 24. must come before elpa, as it may provide package.el
 ;; (require 'init-site-lisp)
 
@@ -33,7 +39,6 @@
 ;; Machinery for installing required packages.
 ;; explicitly call 'package-initialize to set up all packages installed via ELPA.
 ;; should come before all package-related config files
-(require 'init-elpa)
 (require 'init-exec-path) ;; Set up $PATH
 (require 'init-kill-ring)
 ;;----------------------------------------------------------------------------
@@ -162,9 +167,6 @@
 (require 'init-fonts)
 (require 'init-themes)
 (require 'init-yasnippet)
-
-;; (require 'init-ido)
-(require 'init-ivy)
 
 (global-set-key "\C-c\ f" 'counsel-recentf)
 
