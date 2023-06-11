@@ -162,9 +162,9 @@
 (require 'init-fonts)
 (require 'init-themes)
 (require 'init-yasnippet)
-(require 'init-ido)
-;; (require 'init-ivy)
-;; (require 'ivy_buffer_extend)
+
+;; (require 'init-ido)
+(require 'init-ivy)
 
 (global-set-key "\C-c\ f" 'counsel-recentf)
 

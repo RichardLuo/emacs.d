@@ -55,7 +55,6 @@
 ;;
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
-
 ;;
 ;; multiple cursors
 ;;
@@ -76,15 +75,14 @@
   :ensure t
   :diminish (ivy-mode . "")
   :config
-  (ivy-mode 1)
+  (ivy-mode t)
   (setq ivy-use-virutal-buffers t)
   (setq enable-recursive-minibuffers t)
-  (setq ivy-height 10)
+  (setq ivy-height 14)
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-count-format "%d/%d")
   (setq ivy-re-builders-alist
-        `((t . ivy--regex-ignore-order)))
-  )
+        `((t . ivy--regex-ignore-order))))
 
 ;;
 ;; counsel
@@ -145,11 +143,6 @@
               :keymap counsel-recent-dir--map
               :action (lambda (x) (if (fboundp 'ranger) (ranger x) (dired x))))))
 
-
-
-
-
-
 (defun xah-search-current-word ()
   "Call `isearch' on current word or text selection.
 “word” here is A to Z, a to z, and hyphen 「-」 and underline 「_」, independent of syntax table.
@@ -196,5 +189,8 @@ Version 2015-04-09"
 ;; bind it to M-j
 (define-key ivy-minibuffer-map (kbd "M-j") 'bjm/ivy-yank-whole-word)
 
+(setq ivy-use-virtual-buffers t)        ; make it search recent opened files
+(require 'ivy-avy)
+(require 'ivy_buffer_extend)
 
 (provide 'init-ivy)
