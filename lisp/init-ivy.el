@@ -15,7 +15,6 @@
 (when (file-exists-p custom-file)
     (load custom-file))
 
-
 ;;
 ;; use use-package
 ;;
@@ -38,13 +37,12 @@
 ;; basic setup
 ;;
 (menu-bar-mode -1)
-
 (show-paren-mode t)
-(electric-pair-mode t)
 
 (setq electric-pair-pairs '(
 			    (?\' . ?\')
 			    ))
+
 
 (setq-default indent-tabs-mode nil)
 
@@ -76,29 +74,52 @@
   :diminish (ivy-mode . "")
   :config
   (ivy-mode t)
-  (setq ivy-use-virutal-buffers t)
+  (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
-  (setq ivy-height 14)
+  (setq ivy-height 18)
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-count-format "%d/%d")
   (setq ivy-re-builders-alist
-        `((t . ivy--regex-ignore-order))))
-
-;;
-;; counsel
-;;
-(use-package counsel
-  :ensure t
-  :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)))
+        '(
+          (swiper . ivy--regex-plus)
+          (swiper-isearch . ivy--regex-plus)
+          (counsel-grep . ivy--regex-plus)
+          (t . ivy--regex-fuzzy)
+          )))
 
 ;;
 ;; swiper
 ;;
 (use-package swiper
+  :ensure try
+  :config
+  (progn
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (global-set-key "\C-s" 'swiper-isearch)
+    (global-set-key (kbd "C-c C-r") 'ivy-resume)
+    (global-set-key (kbd "<f6>") 'ivy-resume)
+    (global-set-key (kbd "M-x") 'counsel-M-x)
+    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+    (global-set-key (kbd "<f1> l") 'counsel-load-library)
+    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+    (global-set-key (kbd "C-c g") 'counsel-git)
+    (global-set-key (kbd "C-c j") 'counsel-git-grep)
+    (global-set-key (kbd "C-c k") 'counsel-ag)
+    (global-set-key (kbd "C-x l") 'counsel-locate)
+    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+    ))
+
+;; it looks like counsel is a requirement for swiper
+(use-package counsel
   :ensure t
-  :bind (("C-s" . swiper))
   )
+
+;; (global-set-key "\C-c\ f" 'counsel-recentf)
 
 ;;
 ;; yasnippet
@@ -144,9 +165,9 @@
               :action (lambda (x) (if (fboundp 'ranger) (ranger x) (dired x))))))
 
 (defun xah-search-current-word ()
-  "Call `isearch' on current word or text selection.
+  "Call 'isearch' on current word or text selection.
 “word” here is A to Z, a to z, and hyphen 「-」 and underline 「_」, independent of syntax table.
-URL `http://ergoemacs.org/emacs/modernization_isearch.html'
+URL 'http://ergoemacs.org/emacs/modernization_isearch.html'
 Version 2015-04-09"
   (interactive)
   (let ( $p1 $p2 )
@@ -189,7 +210,7 @@ Version 2015-04-09"
 ;; bind it to M-j
 (define-key ivy-minibuffer-map (kbd "M-j") 'bjm/ivy-yank-whole-word)
 
-(setq ivy-use-virtual-buffers t)        ; make it search recent opened files
+;; (setq ivy-use-virtual-buffers t)        ; make it search recent opened files
 (require 'ivy-avy)
 (require 'ivy_buffer_extend)
 

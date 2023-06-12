@@ -45,7 +45,7 @@
 ;; (diminish 'autopair-mode)
 
 ;; some personal key bindings
-(global-set-key (kbd "C-c r") 'replace-string)
+;; (global-set-key (kbd "C-c r") 'replace-string)
 
 ;; newline behavior
 (global-set-key (kbd "RET") 'newline-and-indent)
@@ -115,14 +115,14 @@
 ;; (global-set-key (kbd "C-c c e") 'mc/edit-ends-of-lines)
 ;; (global-set-key (kbd "C-c c a") 'mc/edit-beginnings-of-lines)
 
-;; switch-window
-;; (require 'init-switch-window)
-;; Set "C-x p" to select the previous window
-(defun other-window-backward (&optional n)
-  "Select the Nth previous window"
-  (interactive "P")
-  (other-window (- (prefix-numeric-value n))))
-(global-set-key "\C-xp" 'other-window-backward)
+;; ;; switch-window
+;; ;; (require 'init-switch-window)
+;; ;; Set "C-x p" to select the previous window
+;; (defun other-window-backward (&optional n)
+;;   "Select the Nth previous window"
+;;   (interactive "P")
+;;   (other-window (- (prefix-numeric-value n))))
+;; (global-set-key "\C-xp" 'other-window-backward)
 
 
 ;; undo-tree

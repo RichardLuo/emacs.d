@@ -68,8 +68,8 @@
 
 ;;================================================================
 ;; settings of cvs
-(setq cvs-dired-use-hook 'always)
-(define-key global-map "\C-xve" 'cvs-examine)
+;; (setq cvs-dired-use-hook 'always)
+;; (define-key global-map "\C-xve" 'cvs-examine)
 
 ;;================================================================
 ;; Rebind C-z to start a shell (use .emacs_shellname for the shells rc file)
@@ -86,9 +86,9 @@
 ;;================================================================
 ;;compile key binding.
 ;; (global-set-key [f5]    'compile)
-(global-set-key [f1]    'first-error)
-(global-set-key [f7]    'previous-error)
-(global-set-key [f8]    'next-error)
+;; (global-set-key [f1]    'first-error)
+;; (global-set-key [f7]    'previous-error)
+;; (global-set-key [f8]    'next-error)
 
 ;;-------------------------------------------------------------------------
 (global-set-key "%" 'match-paren)
@@ -99,19 +99,19 @@
 	((looking-at "\\s\)") (forward-char 1) (backward-list 1))
 	(t (self-insert-command (or arg 1)))))
 
-;;----------------------------------------------------------------------
-(defun wy-go-to-char (n char)
-  "Move forward to Nth occurence of CHAR.
-Typing `wy-go-to-char-key' again will move forwad to the next Nth
-occurence of CHAR."
-  (interactive "p\ncGo to char: ")
-  (search-forward (string char) nil nil n)
-  (while (char-equal (read-char)
-		     char)
-    (search-forward (string char) nil nil n))
-  (setq unread-command-events (list last-input-event)))
-;;(define-key global-map (kbd "C-c n") 'wy-go-to-char)
-(global-set-key (kbd "C-c n") 'wy-go-to-char)
+;; ;;----------------------------------------------------------------------
+;; (defun wy-go-to-char (n char)
+;;   "Move forward to Nth occurence of CHAR.
+;; Typing `wy-go-to-char-key' again will move forwad to the next Nth
+;; occurence of CHAR."
+;;   (interactive "p\ncGo to char: ")
+;;   (search-forward (string char) nil nil n)
+;;   (while (char-equal (read-char)
+;; 		     char)
+;;     (search-forward (string char) nil nil n))
+;;   (setq unread-command-events (list last-input-event)))
+;; ;;(define-key global-map (kbd "C-c n") 'wy-go-to-char)
+;; (global-set-key (kbd "C-c n") 'wy-go-to-char)
 
 ;;-------------------------------------------------------------------------
 (defun ska-point-to-register()
@@ -163,13 +163,14 @@ that was stored with ska-point-to-register."
 (global-set-key (kbd "C-c ,") 'ska-jump-to-register)
 
 ;;================================================================
-(require 'ibuffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(global-set-key (kbd "C-c j") 'avy-goto-char)
-(global-set-key (kbd "C-c k") 'avy-goto-char-timer)
-(global-set-key (kbd "C-c l") 'avy-goto-line)
-(global-set-key (kbd "C-c w") 'avy-goto-word-0)
+;; (require 'ibuffer)
+;; (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; (global-set-key (kbd "C-c j") 'avy-goto-char)
+;; (global-set-key (kbd "C-c k") 'avy-goto-char-timer)
+;; (global-set-key (kbd "C-c l") 'avy-goto-line)
+;; (global-set-key (kbd "C-c w") 'avy-goto-word-0)
 
 ;; (require 'browse-kill-ring)
 ;; (global-set-key [(control c)(k)] 'browse-kill-ring)

@@ -83,5 +83,5 @@
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
-
 (provide 'init-utils)
+

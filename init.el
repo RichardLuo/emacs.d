@@ -5,31 +5,14 @@
 ;; (package-initialize)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
-(defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
-(defconst *is-a-mac* (eq system-type 'darwin))
-
-;;----------------------------------------------------------------------------
-;; Bootstrap config
-;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
-
-(require 'init-utils)
-;; (require 'init-company)
-
 
 (require 'init-utils)
 (require 'init-elpa)
 ;; (require 'init-ido)
 (require 'init-ivy)
-;; (require 'init-company)
-;; Needed for Emacs version < 24. must come before elpa, as it may provide package.el
-;; (require 'init-site-lisp)
+(require 'init-exec-path)
 
-;; Security configuration.
 ;; This is commented out by default, but for security considerations
 ;; I strongly recommend you to uncomment it.
 ;; You may need `gnutls' library and the `certifi' python package to enable this.
@@ -39,7 +22,6 @@
 ;; Machinery for installing required packages.
 ;; explicitly call 'package-initialize to set up all packages installed via ELPA.
 ;; should come before all package-related config files
-(require 'init-exec-path) ;; Set up $PATH
 (require 'init-kill-ring)
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
@@ -110,9 +92,6 @@
 ;;   (require 'init-clojure-cider))
 ;; (require 'init-common-lisp)
 
-;; (when *spell-check-support-enabled*
-;;   (require 'init-spelling))
-
 ;; (require 'init-marmalade)
 ;; (require 'init-misc)
 
@@ -124,8 +103,6 @@
 ;; (require-package 'lua-mode)
 ;; (require-package 'htmlize)
 ;; (require-package 'dsvn)
-;; (when *is-a-mac*
-;;   (require-package 'osx-location))
 ;; (require-package 'regex-tool)
 
 ;; ;;----------------------------------------------------------------------------
