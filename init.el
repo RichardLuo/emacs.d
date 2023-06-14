@@ -352,29 +352,29 @@
 (global-set-key "\C-ce"  (lambda () (interactive) (resize-window 4)))
 
 
-(defun electric-pair ()
-      "If at end of line, insert character pair without surrounding spaces.
-    Otherwise, just insert the typed character."
-      (interactive)
-      (if (eolp) (let (parens-require-spaces) (insert-pair)) (self-insert-command 1)))
+;; (defun electric-pair ()
+;;       "If at end of line, insert character pair without surrounding spaces.
+;;     Otherwise, just insert the typed character."
+;;       (interactive)
+;;       (if (eolp) (let (parens-require-spaces) (insert-pair)) (self-insert-command 1)))
 
-(add-hook 'python-mode-hook
-              (lambda ()
-                (define-key python-mode-map "\"" 'electric-pair)
-                (define-key python-mode-map "\'" 'electric-pair)
-                (define-key python-mode-map "(" 'electric-pair)
-                (define-key python-mode-map "[" 'electric-pair)
-                (define-key python-mode-map "{" 'electric-pair)))
+;; (add-hook 'python-mode-hook
+;;               (lambda ()
+;;                 (define-key python-mode-map "\"" 'electric-pair)
+;;                 (define-key python-mode-map "\'" 'electric-pair)
+;;                 (define-key python-mode-map "(" 'electric-pair)
+;;                 (define-key python-mode-map "[" 'electric-pair)
+;;                 (define-key python-mode-map "{" 'electric-pair)))
 
-(add-hook 'c++-mode-hook
-              (lambda ()
-                (define-key c++-mode-map "\"" 'electric-pair)
-                (define-key c++-mode-map "\'" 'electric-pair)
-                (define-key c++-mode-map "(" 'electric-pair)
-                (define-key c++-mode-map "[" 'electric-pair)
-                (define-key c++-mode-map "{" 'electric-pair)))
+;; (add-hook 'c++-mode-hook
+;;               (lambda ()
+;;                 (define-key c++-mode-map "\"" 'electric-pair)
+;;                 (define-key c++-mode-map "\'" 'electric-pair)
+;;                 (define-key c++-mode-map "(" 'electric-pair)
+;;                 (define-key c++-mode-map "[" 'electric-pair)
+;;                 (define-key c++-mode-map "{" 'electric-pair)))
 
-(setq electric-pair-mode t)
+;; (setq electric-pair-mode t)
 
 (provide 'init)
 

@@ -39,9 +39,9 @@
 (menu-bar-mode -1)
 (show-paren-mode t)
 
-(setq electric-pair-pairs '(
-			    (?\' . ?\')
-			    ))
+;; (setq electric-pair-pairs '(
+;; 			    (?\' . ?\')
+;; 			    ))
 
 
 (setq-default indent-tabs-mode nil)

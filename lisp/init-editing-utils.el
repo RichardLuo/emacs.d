@@ -40,7 +40,9 @@
 ;; (setq global-auto-revert-non-file-buffers t
 ;;       auto-revert-verbose t)
 
-;; enable auto-pairing
+(smartparens-global-mode t)
+
+;; ;; enable auto-pairing
 ;; (require 'init-autopair)
 ;; (diminish 'autopair-mode)
 
