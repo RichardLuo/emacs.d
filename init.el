@@ -357,6 +357,21 @@
 
 (global-set-key "\C-ce"  (lambda () (interactive) (resize-window 4)))
 
+
+;; (use-package flycheck
+;;   :ensure t
+;;   :init (global-flycheck-mode))
+
+(use-package flycheck
+  :ensure t)
+
+(add-hook 'python-mode-hook (lambda ()
+                              (flycheck-mode 1)
+                              (semantic-mode 1)
+                              (setq flycheck-checker 'python-pylint
+                                    flycheck-checker-error-threshold 900
+                                    flycheck-pylintrc "~/.pylintrc")))
+
 (defun flycheck-python-setup ()
   (flycheck-mode))
 
