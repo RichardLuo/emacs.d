@@ -318,15 +318,13 @@
 ;;           (shrink-window (- h compilation-window-height)))))))
 ;; (add-hook 'compilation-mode-hook 'my-compilation-hook)
 
-(add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook (function misc:underscore-word-hook))
 
-
-(setq jedi:complete-on-dot t)
-
-(when (functionp 'jedi:setup)
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (setq jedi:complete-on-dot t))
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (setq jedi:complete-on-dot t)
+;; (when (functionp 'jedi:setup)
+;;   (add-hook 'python-mode-hook 'jedi:setup)
+;;   (setq jedi:complete-on-dot t))
 
 (setq lsp-enable-symbol-highlighting nil)
 
