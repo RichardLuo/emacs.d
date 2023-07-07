@@ -76,7 +76,7 @@
   (ivy-mode t)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
-  (setq ivy-height 18)
+  (setq ivy-height 8)
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-count-format "%d/%d")
   (setq ivy-re-builders-alist
