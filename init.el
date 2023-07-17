@@ -426,4 +426,9 @@
 ;; (setq lsp-pylsp-plugins-pylint-args [ "--rcfile=/home/richard/.pylintrc" ]) ;; or path to your project.
 ;; (setq lsp-pylsp-plugins-pylint-args "--rcfile=/home/richard/.pylintrc") ;; or path to your project.
 
+;; Prevent undo tree files from polluting your git repo
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+
 (provide 'init)
+
+
