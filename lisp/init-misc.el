@@ -21,6 +21,7 @@
 ;;(setq-default make-backup-files nil)
 (setq make-backup-files nil)
 
+(setq confirm-kill-emacs #'yes-or-no-p)
 
 ;; replace yes/no with y/n
 (fset 'yes-or-no-p 'y-or-n-p)
