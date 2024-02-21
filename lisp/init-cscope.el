@@ -74,7 +74,37 @@
        ( "/media/psf/share/xyan-znet-sdk/gsdk/util/third_party/openthread/" )
        ( "/media/psf/share/xyan-znet-sdk/gsdk/protocol/zigbee/" )
        )
+
+     ( "^/home/richard/ncs/"
+       ("/home/richard/ncs")
+       ( "/home/richard/.local/opt/zephyr-sdk-0.16.0" )
+       )
+
 ))
+
+
+(setq 
+ cscope-database-regexps 
+'(
+
+   ( "^/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/europa"
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/europa" )
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/extension" )
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/platform" )
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/util" )
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone" )
+     )
+
+   ( "^/media/psf/share/xyan-znet-sdk/gecko-sdk-clone"
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/extension" )
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/platform" )
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/util" )
+     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone" )
+     )
+))
+
+
+
 
 ;; (setq cscope-database-regexps
 ;;       '(
