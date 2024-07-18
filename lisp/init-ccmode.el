@@ -38,4 +38,8 @@
 (load "google-c-style.el" nil t t)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c++-mode-common-hook 'google-set-c-style)
+
+;; 强制将 .ipp 文件识别为 c++-mode
+(add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
+
 (provide 'init-ccmode)

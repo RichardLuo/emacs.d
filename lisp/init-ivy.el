@@ -26,12 +26,12 @@
 (use-package diminish :ensure t)
 (use-package bind-key :ensure t)
 
-(use-package auto-package-update
-  :ensure t
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe))
+;; (use-package auto-package-update
+;;   :ensure t
+;;   :config
+;;   (setq auto-package-update-delete-old-versions t)
+;;   (setq auto-package-update-hide-results t)
+;;   (auto-package-update-maybe))
 
 ;;
 ;; basic setup
@@ -86,6 +86,12 @@
           (counsel-grep . ivy--regex-plus)
           (t . ivy--regex-fuzzy)
           )))
+
+
+;; Make the last used command be the first-one
+(use-package ivy-prescient
+  :init
+  (ivy-prescient-mode 1))
 
 ;;
 ;; swiper

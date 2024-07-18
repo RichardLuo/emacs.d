@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: Header File Template
+# key: hd
+# --
+/*
+ * Copyright (C) `(insert (format-time-string "%Y"))` The EUROPA Project
+ *
+ * @author York Lee, cdominant7@gmail.com
+ * 
+ * @date `(insert (format-time-string "%Y-%m-%d %H:%M:%S"))`
+ * 
+ ****************************************************************** 
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+$0

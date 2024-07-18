@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: brief of include user file
+# key: incl
+# --
+#include "$0"

@@ -1,5 +1,13 @@
-(require 'xxcscope)
-;; (cscope-setup)
+(use-package xcscope
+  :ensure t)
+
+(require 'xcscope)
+
+;; 自动启用 cscope 模式
+(add-hook 'c-mode-common-hook 'cscope-minor-mode)
+
+;; 配置使用 gtags-cscope 代替 cscope
+(setq cscope-program "gtags-cscope")
 
 ;; told emacs do not update database evey time.
 (setq cscope-do-not-update-database t)
@@ -17,21 +25,6 @@
 (define-key global-map [(s N)] 'cscope-next-symbol)
 (define-key global-map [(s f)] 'cscope-find-this-file)
 (define-key global-map [(s c)] 'cscope-find-functions-calling-this-function)
-
-
-;; (define-key global-map [(control f3)]  'cscope-set-initial-directory)
-;; (define-key global-map [(control f4)]  'cscope-unset-initial-directory)
-;; (define-key global-map [(control f5)]  'cscope-find-this-symbol)
-;; (define-key global-map [(control f6)]  'cscope-find-global-definition)
-;; (define-key global-map [(control f7)]  'cscope-find-global-definition-no-prompting)
-;; (define-key global-map [(control f8)]  'cscope-pop-mark)
-;; (define-key global-map [(control f9)]  'cscope-next-symbol)
-;; (define-key global-map [(control f10)] 'cscope-next-file)
-;; (define-key global-map [(control f11)] 'cscope-prev-symbol)
-
-;; (define-key global-map [(control f12)] 'cscope-prev-file)
-;; (define-key global-map [(meta f9)]  'cscope-display-buffer)
-;; (define-key global-map [(meta f10)] 'cscope-display-buffer-toggle)
 
 (setq 
  cscope-database-regexps 
@@ -82,48 +75,52 @@
 
 ))
 
-
 (setq 
  cscope-database-regexps 
 '(
 
-   ( "^/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/europa"
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/europa" )
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/extension" )
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/platform" )
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/util" )
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone" )
+   ( "^/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/europa"
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/europa" )
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/extension" )
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/platform" )
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/util" )
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone" )
      )
 
-   ( "^/media/psf/share/xyan-znet-sdk/gecko-sdk-clone"
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/extension" )
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/platform" )
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone/util" )
-     ( "/media/psf/share/xyan-znet-sdk/gecko-sdk-clone" )
+   ( "^/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone"
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/extension" )
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/europa" )
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/platform" )
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/util" )
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone" )
      )
+
+   ( "^/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/europa/MWC-B210"
+     ( "/Users/richard/share/xyan-znet-sdk/gecko-sdk-clone/europa/MWC-B210" )
+     ( "/Users/richard/SimplicityStudio/SDKs/gecko_sdk_3/extension/matter_extension" )
+     )
+
+   ( "^/Users/richard/SimplicityStudio/SDKs/gecko_sdk_3"
+     ( "/Users/richard/SimplicityStudio/SDKs/gecko_sdk_3/extension" )
+     ( "/Users/richard/SimplicityStudio/SDKs/gecko_sdk_3/europa_matter" )
+     ( "/Users/richard/SimplicityStudio/SDKs/gecko_sdk_3/platform" )
+     ( "/Users/richard/SimplicityStudio/SDKs/gecko_sdk_3/util" )
+     ( "/Users/richard/SimplicityStudio/SDKs/gecko_sdk_3" )
+     )
+
 ))
 
 
+(defface my-cscope-separator-face
+  '((t :foreground "cyan"))
+  "Face for cscope separator.")
+(setq cscope-separator-face 'my-cscope-separator-face)
+(defun my-cscope-display-buffer (buffer)
+  "Display BUFFER, making sure it is cleared first."
+  (with-current-buffer buffer
+    (let ((inhibit-read-only t))
+      (erase-buffer)))
+  (display-buffer buffer))
+(advice-add 'cscope-display-buffer :override #'my-cscope-display-buffer)
 
-
-;; (setq cscope-database-regexps
-;;       '(
-;;         ( "^/users/jdoe/sources/proj1"
-;;           ( t )
-;;           ( "/users/jdoe/sources/proj2")
-;;           ( "/users/jdoe/sources/proj3/mycscope.out")
-;;           ( "/users/jdoe/sources/proj4")
-;;           t
-;;           ( "/some/master/directory" ("-d" "-I/usr/local/include") )
-;;           )
-;;         ( "^/users/jdoe/sources/gnome/"
-;;           ( "/master/gnome/database" ("-d") )
-;;           )
-;;         ))
-
-
-(add-hook 'c-mode-common-hook
-	  '(lambda ()
-	    (require 'xxcscope)))
-
-(provide 'init-cscope)
+(provide 'init-xcscope)

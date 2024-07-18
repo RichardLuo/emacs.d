@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: brief of europa::protocol::
+# key: eup
+# --
+europa::protocol::$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: brief of include system header
+# key: incs
+# --
+#include <$0>

@@ -62,23 +62,6 @@
 (add-hook 'comint-output-filter-funtions
 		  'comint-watch-for-password-promt)
 
-; Fontlock mode settings.
-(global-font-lock-mode t)
-
-(setq font-lock-maximum-decoration t)
-
-;;================================================================
-;; settings of cvs
-;; (setq cvs-dired-use-hook 'always)
-;; (define-key global-map "\C-xve" 'cvs-examine)
-
-;;================================================================
-;; Rebind C-z to start a shell (use .emacs_shellname for the shells rc file)
-;;(global-set-key "\C-z" 'shell)
-
-;; This binds word completions to Shift-Tab, and Ctrl+Space
-;;(global-set-key [S-iso-lefttab] 'dabbrev-completion)
-
 ;; Set up some f-key shortcuts
 (global-set-key [S-f1]  'man)
 (define-key global-map [(s r)]  'rename-buffer)
@@ -92,13 +75,13 @@
 ;; (global-set-key [f8]    'next-error)
 
 ;;-------------------------------------------------------------------------
-(global-set-key "%" 'match-paren)
-(defun match-paren (arg)
-  "Go to the matching paren if on a paren; otherwise insert %."
-  (interactive "p")
-  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-	((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-	(t (self-insert-command (or arg 1)))))
+;; (global-set-key "%" 'match-paren)
+;; (defun match-paren (arg)
+;;   "Go to the matching paren if on a paren; otherwise insert %."
+;;   (interactive "p")
+;;   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+;; 	((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+;; 	(t (self-insert-command (or arg 1)))))
 
 ;; ;;----------------------------------------------------------------------
 ;; (defun wy-go-to-char (n char)
@@ -416,5 +399,9 @@ will be killed."
 
 (add-hook 'c-mode-hook (function misc:underscore-word-hook))
 (add-hook 'c++-mode-hook (function misc:underscore-word-hook))
+
+(global-set-key "\C-c\ f" 'counsel-recentf)
+
+(mouse-avoidance-mode 'exile)  ;; jump to corner when approached
 
 (provide 'init-misc)

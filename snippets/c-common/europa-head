@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: EUROPA c c++ header
+# key: euh
+# --
+/*
+ * Copyright (C) 2019 The ENKIOT Europa Project
+ *
+ * @author York Lee, cdominant7@gmail.com
+ *
+ * @date `(insert (format-time-string "%Y-%m-%d-%H:%M:%S"))`
+ * 
+ ****************************************************************** 
+ */
+
+$0

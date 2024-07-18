@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Main Function
+# key: main
+# --
+#if defined(__cplusplus)
+int main(int argc, char *argv[]) {
+    $0
+    return 0;
+}
+#else
+int main(void) {
+    $0
+    return 0;
+}
+#endif

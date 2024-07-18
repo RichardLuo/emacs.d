@@ -3,10 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        helm-confirm-and-exit-minibuffer
         smex
         ))
 
 (setq mc/cmds-to-run-once
       '(
         beginning-of-visual-line
+        helm-M-x
         ))
