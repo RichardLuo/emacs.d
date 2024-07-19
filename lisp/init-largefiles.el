@@ -32,7 +32,7 @@
     (message "Large file detected, enabling vlf")
     (vlf-mode 1))
   (when (> (buffer-size) (* 1024 1024))  ;; 如果文件大于 1MB
-    (so-long-mode 1)
+    (so-long-mode)
     (message "so-long-mode enabled for long lines")))
 
 ;; Function to adjust font-lock decoration based on file size
