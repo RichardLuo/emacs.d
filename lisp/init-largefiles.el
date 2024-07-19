@@ -1,3 +1,6 @@
+;; Load use-package for managing packages
+(require 'use-package)
+
 ;; Load vlf for handling very large files
 (use-package vlf
   :ensure t
@@ -28,23 +31,22 @@
     (vlf-mode 1)  ;; 启用 vlf-mode
     (so-long-mode 1)))
 
-;; Add hooks to manage large files
-(add-hook 'find-file-hook #'my-disable-lsp-mode-for-large-files)
-(add-hook 'find-file-hook #'my-handle-large-files)
-(add-hook 'after-find-file-hook #'my-handle-large-files)
-
+;; Function to adjust font-lock decoration based on file size
 (defun my-adjust-font-lock-for-large-files ()
   "Adjust font-lock decoration based on file size."
   (when (> (buffer-size) (* 1 1024 1024))  ; 文件大于 1MB
     (setq font-lock-maximum-decoration 1)))
 
-(add-hook 'find-file-hook 'my-adjust-font-lock-for-large-files)
-
+;; Function to disable font-lock mode for very large files
 (defun my-disable-font-lock-for-large-files ()
   "Disable font-lock mode for large files."
   (when (> (buffer-size) (* 10 1024 1024))  ; 文件大于 10MB
     (font-lock-mode -1)))
 
+;; Add hooks to manage large files
+(add-hook 'find-file-hook 'my-disable-lsp-mode-for-large-files)
+(add-hook 'find-file-hook 'my-handle-large-files)
+(add-hook 'find-file-hook 'my-adjust-font-lock-for-large-files)
 (add-hook 'find-file-hook 'my-disable-font-lock-for-large-files)
 
 (provide 'init-largefiles)
