@@ -17,7 +17,7 @@
 (defun my-disable-lsp-mode-for-large-cpp-files ()
   "Disable lsp-mode for large C/C++ files."
   (when (and (or (derived-mode-p 'c-mode) (derived-mode-p 'c++-mode))
-             (> (buffer-size) (* 500 1024)))  ;; 如果 C/C++ 文件大于 500KB
+             (> (buffer-size) (* 5 10)))  ;; 如果 C/C++ 文件大于 500KB
     (when (bound-and-true-p lsp-mode)
       (message "Disabling lsp-mode for large C/C++ file")
       (lsp-disconnect)
@@ -57,25 +57,3 @@
 (add-hook 'find-file-hook 'my-disable-font-lock-for-very-large-files)
 
 (provide 'init-largefiles)
-
-;; Extra: Enable debug on error and quit
-(setq debug-on-error t)
-(setq debug-on-quit t)
-
-;; Function to log messages to a file
-(defun log-to-file (message)
-  "Log MESSAGE to a file."
-  (with-temp-buffer
-    (insert (format "%s: %s\n" (format-time-string "%Y-%m-%d %H:%M:%S") message))
-    (append-to-file (point-min) (point-max) "~/emacs-debug.log")))
-
-;; Advice for message function to log all messages
-(defadvice message (before log-message-to-file (fmt &rest args) activate)
-  (log-to-file (apply 'format fmt args)))
-
-;; Log startup messages
-(log-to-file "Emacs started")
-(log-to-file "Logging is enabled")
-
-;; Example of logging a custom message
-(message "Logging is enabled")
