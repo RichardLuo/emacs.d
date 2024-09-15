@@ -56,9 +56,9 @@
   :defer t
   :config
   (setq treemacs-width 30)
-  (treemacs-follow-mode t)
-  (treemacs-filewatch-mode t)
-  (treemacs-git-mode 'deferred))
+  (treemacs-follow-mode nil)
+  (treemacs-filewatch-mode nil)
+  (treemacs-git-mode 'simple))
 
 ;; 启用 lsp-treemacs 并与 lsp-mode 集成
 (use-package lsp-treemacs
@@ -84,7 +84,7 @@
   (setq lsp-ui-sideline-show-diagnostics t)     ;; 启用诊断信息
   (setq lsp-ui-sideline-show-code-actions nil)  ;; 禁用代码操作
   (setq lsp-ui-sideline-show-symbol t)          ;; 启用符号信息
-  (setq lsp-ui-sideline-delay 0.3)              ;; 增加延迟，减少频繁刷新
+  (setq lsp-ui-sideline-delay 1.0)              ;; 增加延迟，减少频繁刷新
   (setq lsp-ui-sideline-ignore-duplicate t)     ;; 仅在当前行显示旁注
   (setq lsp-ui-sideline-update-mode 'line)      ;; 使用 line 模式更新旁注
   (setq lsp-ui-sideline-diagnostic-max-lines 1) ;; 限制诊断信息行数
@@ -119,7 +119,6 @@
 (setq lsp-enable-symbol-highlighting nil)
 (setq lsp-enable-snippet nil)
 
-(require 'lsp-mode)
 ;; 启用 LSP 日志记录
 (setq lsp-log-io nil)
 
@@ -129,10 +128,6 @@
   (add-hook 'c-mode-hook #'lsp)
   (add-hook 'c++-mode-hook #'lsp)
   (setq lsp-enable-snippet nil))  ;; Disable snippets
-
-;; Optional: lsp-treemacs for project-wide navigation
-(require 'lsp-treemacs)
-(lsp-treemacs-sync-mode 1)
 
 (defun my-lsp-find-definition ()
   "Find definition even if the point is at the end of a symbol."
@@ -233,5 +228,36 @@
       (message "No xref buffer found."))))
 
 (global-set-key (kbd "s-b") 'my-switch-to-xref-buffer)
+
+
+(add-hook 'find-file-hook
+          (lambda ()
+            (when (and (derived-mode-p 'c-mode 'c++-mode)
+                       (>= (buffer-size) (* 100 1024))) ;; 大于100KB的文件
+              (lsp-disconnect)
+              (message "LSP features disabled for large file"))))
+
+;; ;; 针对大文件的性能优化配置
+;; (add-hook 'lsp-mode-hook
+;;           (lambda ()
+;;             (when (and (derived-mode-p 'c-mode 'c++-mode)
+;;                        (>= (buffer-size) (* 100 1024))) ;; 100KB以上的文件
+;;               ;; 禁用特定功能
+;;               (setq lsp-ui-sideline-enable nil) ;; 禁用旁注
+;;               (setq lsp-diagnostics-provider :none) ;; 禁用诊断提供者
+;;               (setq lsp-ui-sideline-show-hover nil) ;; 禁用悬停信息
+;;               (setq lsp-ui-sideline-show-code-actions nil) ;; 禁用代码操作
+;;               (setq lsp-ui-sideline-show-symbol nil) ;; 禁用符号信息
+;;               (setq lsp-ui-sideline-show-diagnostics nil) ;; 禁用诊断信息
+;;               (setq lsp-ui-doc-enable nil) ;; 禁用lsp-ui-doc
+;;               (setq lsp-lens-enable nil)))) ;; 禁用代码镜头
+
+;; (add-hook 'lsp-mode-hook
+;;           (lambda ()
+;;             (when (and (derived-mode-p 'c-mode 'c++-mode)
+;;                        (>= (buffer-size) (* 100 1024)))
+;;               ;; 禁用特定功能
+;;               (setq lsp-ui-sideline-enable nil)
+;;               (setq lsp-diagnostics-provider :none))))
 
 (provide 'init-lspccls)
