@@ -1,17 +1,19 @@
-;; 仅当 quelpa 未安装时才安装它
+;; 初始化包管理系统并添加 MELPA 源
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")))
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; 安装 quelpa 和 quelpa-use-package
 (unless (package-installed-p 'quelpa)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
-    (eval-buffer)
-    (quelpa-self-upgrade)))
-
-;; 使用 unless 检查 quelpa-use-package 是否已安装，若未安装则安装之
+  (package-refresh-contents)
+  (package-install 'quelpa))
 (unless (package-installed-p 'quelpa-use-package)
-  (quelpa
-   '(quelpa-use-package
-     :fetcher git
-     :url "https://github.com/quelpa/quelpa-use-package.git")))
+  (package-refresh-contents)
+  (package-install 'quelpa-use-package))
 
+(require 'quelpa)
 (require 'quelpa-use-package)
 
 ;; 禁用自动更新 MELPA 源和 Quelpa

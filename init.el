@@ -1,23 +1,14 @@
-;; 初始化包管理
-(require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("gnu" . "https://elpa.gnu.org/packages/")))
-(package-initialize)
-
-;; 确保 use-package 已安装和加载
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(require 'use-package)
-(setq use-package-always-ensure t)
-
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+(require 'init-package)
+(require 'init-quelpa)
+(require 'init-bookmark+)
+;; (require 'init-disable-project)
+;; (require 'init-projectile)
+
 (require 'init-utils)
 (require 'init-elpa)
-(require 'init-quelpa)
 ;; (require 'init-ido)
 (require 'init-exec-path)
 (require 'init-kill-ring)
@@ -104,11 +95,14 @@
 (require 'init-dts)
 (require 'init-ivy)
 ;; (require 'init-helm)
-(require 'init-lspccls)
-(require 'init-largefiles)
 (require 'init-clangfmt)
 (require 'init-hydra)
 (require 'init-ace-window)
 (require 'init-bookmark+)
 (require 'init-undo-tree)
 (require 'init-smartparens)
+(require 'init-lspccls)
+(require 'init-largefiles)
+(require 'init-grip-mode)
+(require 'init-startup-window)
+(require 'init-xml)

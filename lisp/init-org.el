@@ -7,8 +7,14 @@
   :config
   ;; 设置默认Org文件目录
   (setq org-directory "~/org/")
-  ;; 设置默认Org文件
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
+
+  (setq org-agenda-files '("~/org"))
+
+  (setq org-log-done 'note)  ;; 当任务完成时，提示输入注释并记录时间
+
+  ;; 设置Org目录和默认Org文件
+  (setq org-directory (list "~/org" "~/obsidian-techspec/org"))
+  (setq org-default-notes-file (expand-file-name "notes.org" (car org-directory)))
 
   ;; 启用Org-indent模式，美化文档结构
   (setq org-startup-indented t)
@@ -37,9 +43,29 @@
   (setq org-src-fontify-natively t)
 
   ;; 配置Org-agenda快捷键
-  (global-set-key (kbd "C-c a") 'org-agenda)
+  (define-key org-mode-map (kbd "C-c a") 'org-agenda)
 
-  ;; 更多个人化设置可以在这里添加
+  ;; 配置Org-capture快捷键（仅限org-mode下）
+  (define-key org-mode-map (kbd "C-c c") 'org-capture)
+
+  ;; 启用对代码块的语言支持
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (shell . t)  ;; 启用Bash支持
+     (C . t)      ;; 启用C语言支持
+     ;; 其他语言支持可以根据需要添加
+     ))
+
+  ;; 确保在执行代码块前进行确认
+  (setq org-confirm-babel-evaluate nil)
+
+  (setq org-capture-templates
+        '(("n" "New Org Entry" plain
+           (file (lambda () (buffer-file-name)))
+           "#+TITLE: %^{Title}\n#+AUTHOR: York.Lee\n#+EMAIL: york.lee@gmail.com\n#+DATE: %U\n#+DESCRIPTION: %^{Description}\n\n"
+           :empty-lines 0))) ;; 确保没有多余的空行
   )
 
 ;; Org-bullets，用漂亮的符号替换标准的Org模式的列表符号
@@ -59,5 +85,8 @@
 ;; (unless (package-installed-p 'use-package)
 ;;   (package-refresh-contents)
 ;;   (package-install 'use-package))
+
+;; (setq-default line-spacing 0.2)  ;; 调整行间距
+;; (setq-default default-text-properties '(line-height 1.0))  ;; 调整字符间距
 
 (provide 'init-org)

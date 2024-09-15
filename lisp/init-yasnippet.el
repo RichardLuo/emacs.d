@@ -8,6 +8,7 @@
   :ensure t
   :config
   (yas-global-mode 1) ;; 全局启用 yasnippet 模式
+  (define-key yas-minor-mode-map (kbd "C-c TAB") 'yas-expand)
   ;; 添加片段目录
   (add-to-list 'yas-snippet-dirs c-common-snippets-dir)
   (add-to-list 'yas-snippet-dirs c-mode-snippets-dir)
