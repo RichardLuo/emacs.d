@@ -17,7 +17,7 @@
 (defun my-disable-lsp-mode-for-large-cpp-files ()
   "Disable lsp-mode for large C/C++ files."
   (when (and (or (derived-mode-p 'c-mode) (derived-mode-p 'c++-mode))
-             (> (buffer-size) (* 5 10)))  ;; 如果 C/C++ 文件大于 500KB
+             (> (buffer-size) (* 500 1024)))  ;; 如果 C/C++ 文件大于 500KB
     (when (bound-and-true-p lsp-mode)
       (message "Disabling lsp-mode for large C/C++ file")
       (lsp-disconnect)
@@ -32,14 +32,14 @@
     (message "Large file detected, enabling vlf")
     (vlf-mode 1))
   (when (> (buffer-size) (* 1024 1024))  ;; 如果文件大于 1MB
-    (so-long-mode)
+    (so-long-mode 1)
     (message "so-long-mode enabled for long lines")))
 
 ;; Function to adjust font-lock decoration based on file size
 (defun my-adjust-font-lock-for-large-files ()
   "Adjust font-lock decoration based on file size."
-  (when (> (buffer-size) (* 1 1024 1024))  ; 文件大于 1MB
-    (setq font-lock-maximum-decoration 1)
+  (when (> (buffer-size) (* 2 1024 1024))  ; 文件大于 2MB
+    (setq-local font-lock-maximum-decoration 1)
     (font-lock-refresh-defaults)
     (message "Adjusting font-lock decoration for large file")))
 
