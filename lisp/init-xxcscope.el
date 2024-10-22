@@ -126,22 +126,19 @@
 ))
 
 
+(setq 
+ cscope-database-regexps 
+'(
+   ( "^/Users/richard/share/esp/esp-idf"
+     ( "/Users/richard/share/esp/esp-idf" )
+     ( "/Users/richard/connectedhomeip" )
+     )
 
-;; (setq cscope-database-regexps
-;;       '(
-;;         ( "^/users/jdoe/sources/proj1"
-;;           ( t )
-;;           ( "/users/jdoe/sources/proj2")
-;;           ( "/users/jdoe/sources/proj3/mycscope.out")
-;;           ( "/users/jdoe/sources/proj4")
-;;           t
-;;           ( "/some/master/directory" ("-d" "-I/usr/local/include") )
-;;           )
-;;         ( "^/users/jdoe/sources/gnome/"
-;;           ( "/master/gnome/database" ("-d") )
-;;           )
-;;         ))
-
+   ( "^/Users/richard/connectedhomeip"
+     ( "/Users/richard/connectedhomeip" )
+     ( "/Users/richard/share/esp/esp-idf" )
+     )
+))
 
 (defun my-setup-cscope ()
   (require 'xxcscope))

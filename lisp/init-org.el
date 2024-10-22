@@ -89,4 +89,39 @@
 ;; (setq-default line-spacing 0.2)  ;; 调整行间距
 ;; (setq-default default-text-properties '(line-height 1.0))  ;; 调整字符间距
 
+;; (require 'ox-md)
+
+
+(use-package ox-pandoc
+  :ensure t  ;; 确保ox-pandoc插件已安装
+  :after org ;; 确保在org-mode加载之后再加载ox-pandoc
+  :config
+  (require 'ox-pandoc)
+  ;; default options for all output formats
+  (setq org-pandoc-options '((standalone . t)))
+  (setq org-pandoc-options-for-markdown '((standalone . t)))
+  (setq org-pandoc-options-for-markdown_github '((standalone . t)))
+  )
+
+(eval-after-load 'ox
+  '(add-to-list 'org-export-backends 'pandoc))
+
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/tasks.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("n" "Note" entry (file "~/org/notes.org")
+         "* %U %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+         "* %U %?\n  %i\n  %a")
+        ("b" "Bookmark" entry (file "~/org/bookmarks.org")
+         "* %?  \n %u\n  %a\n[[bookmark:%s][My Bookmark]]")))
+
+(use-package org-cliplink
+  :ensure t
+  :commands (org-cliplink-capture)
+  :config
+  (setq org-cliplink-default-description-style 'title)  ; 使用页面标题作为描述
+)
+
 (provide 'init-org)

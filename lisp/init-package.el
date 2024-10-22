@@ -1,6 +1,7 @@
 ;; 初始化包管理
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("melpa-http" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 

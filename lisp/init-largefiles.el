@@ -31,7 +31,7 @@
   (when (> (buffer-size) (* 5 1024 1024))  ;; 如果文件大于 5MB
     (message "Large file detected, enabling vlf")
     (vlf-mode 1))
-  (when (> (buffer-size) (* 1024 1024))  ;; 如果文件大于 1MB
+  (when (> (buffer-size) (* 3 1024 1024))  ;; 如果文件大于 1MB
     (so-long-mode 1)
     (message "so-long-mode enabled for long lines")))
 

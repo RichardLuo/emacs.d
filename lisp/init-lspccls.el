@@ -17,6 +17,7 @@
 (use-package lsp-mode
   :ensure t
   :init
+  (setq lsp-prefer-flymake nil)  ;; Use flycheck instead of flymake
   ;; 设置文件监视阈值，防止过多文件监视导致的性能问题
   (setq lsp-keymap-prefix "s-l") ;; 设置 super+l 作为 lsp-mode 前缀键
   (setq lsp-file-watch-threshold 10000)
@@ -41,8 +42,20 @@
   :hook ((c-mode c++-mode) . lsp)
   :commands lsp
   :config
-  ;; 设置 clangd 的可执行文件路径
-  (setq lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
+  (setq lsp-log-io nil)
+  ;; (setq ccls-initialization-options
+  ;;       '(:clang (:extraArgs ["-Wno-vla-extension" "-std=c++17" "-std=gnu++17"])
+  ;;                :index (
+  ;;                        :comments 0
+  ;;                        :threads 2)
+  ;;                :completion (:detailedLabel t)
+  ;;                :diagnostics (:onChange 200)))
+  ;; (setq lsp-lens-enable nil)
+  )
+
+;; (add-hook 'lsp-before-initialize-hook
+;;           (lambda ()
+;;             (setq ccls-args '("--log-file=/tmp/ccls.log" "--log-file-append" "-v 2"))))
 
 ;; 安装并配置 which-key 以便查看按键绑定提示
 (use-package which-key
@@ -79,7 +92,8 @@
   :ensure t
   :commands lsp-ui-mode
   :config
-  (setq lsp-ui-sideline-enable t)               ;; 启用旁注功能
+  (setq lsp-ui-doc-enable nil)  ;; 禁用符号的悬浮文档
+  (setq lsp-ui-sideline-enable nil)               ;; 启用旁注功能
   (setq lsp-ui-sideline-show-hover nil)           ;; 禁用悬停信息
   (setq lsp-ui-sideline-show-diagnostics t)     ;; 启用诊断信息
   (setq lsp-ui-sideline-show-code-actions nil)  ;; 禁用代码操作
@@ -106,23 +120,13 @@
 ;;   :ensure t
 ;;   :after lsp-mode
 ;;   :config
-;;   (setq ccls-initialization-options
-;;         '(:index (:comments 2) :completion (:detailedLabel t)))
-;;   :hook ((c-mode c++-mode) . (lambda () (require 'ccls) (lsp))))
-;; (require 'ccls)
-;; (setq ccls-executable "/usr/local/bin/ccls")
-;; (setq ccls-args '("--log-file=/tmp/ccls.log" "--log-file-append"))
+;;   (setq ccls-args '("--log-file=/tmp/ccls.log" "--log-file-append" "-v 2")))
 
 ;; 增加垃圾回收阈值
 (setq gc-cons-threshold 100000000) ;; 100MB
 
 (setq lsp-enable-symbol-highlighting nil)
 (setq lsp-enable-snippet nil)
-
-;; 启用 LSP 日志记录
-(setq lsp-log-io nil)
-
-(setq lsp-prefer-flymake nil)  ;; Use flycheck instead of flymake
 
 (with-eval-after-load 'lsp-mode
   (add-hook 'c-mode-hook #'lsp)
@@ -199,7 +203,7 @@
 
 
 (put 'lsp-enabled 'safe-local-variable 'booleanp)
-(put 'lsp-clients-clangd-args 'safe-local-variable 'listp)
+;; (put 'lsp-clients-clangd-args 'safe-local-variable 'listp)
 (put 'ccls-initialization-options 'safe-local-variable 'listp)
 
 ;; 将特定的 eval 表达式标记为安全的
@@ -236,28 +240,5 @@
                        (>= (buffer-size) (* 100 1024))) ;; 大于100KB的文件
               (lsp-disconnect)
               (message "LSP features disabled for large file"))))
-
-;; ;; 针对大文件的性能优化配置
-;; (add-hook 'lsp-mode-hook
-;;           (lambda ()
-;;             (when (and (derived-mode-p 'c-mode 'c++-mode)
-;;                        (>= (buffer-size) (* 100 1024))) ;; 100KB以上的文件
-;;               ;; 禁用特定功能
-;;               (setq lsp-ui-sideline-enable nil) ;; 禁用旁注
-;;               (setq lsp-diagnostics-provider :none) ;; 禁用诊断提供者
-;;               (setq lsp-ui-sideline-show-hover nil) ;; 禁用悬停信息
-;;               (setq lsp-ui-sideline-show-code-actions nil) ;; 禁用代码操作
-;;               (setq lsp-ui-sideline-show-symbol nil) ;; 禁用符号信息
-;;               (setq lsp-ui-sideline-show-diagnostics nil) ;; 禁用诊断信息
-;;               (setq lsp-ui-doc-enable nil) ;; 禁用lsp-ui-doc
-;;               (setq lsp-lens-enable nil)))) ;; 禁用代码镜头
-
-;; (add-hook 'lsp-mode-hook
-;;           (lambda ()
-;;             (when (and (derived-mode-p 'c-mode 'c++-mode)
-;;                        (>= (buffer-size) (* 100 1024)))
-;;               ;; 禁用特定功能
-;;               (setq lsp-ui-sideline-enable nil)
-;;               (setq lsp-diagnostics-provider :none))))
 
 (provide 'init-lspccls)

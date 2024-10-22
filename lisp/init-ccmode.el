@@ -35,9 +35,16 @@
 ;; 		  '(lambda ()
 ;; 			 (c-set-style "stroustrup")))
 
-(load "google-c-style.el" nil t t)
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-(add-hook 'c++-mode-common-hook 'google-set-c-style)
+;; (add-hook 'c++-mode-hook
+;;           (lambda ()
+;;             (c-set-style "linux")  ; 选择一个基本的风格，防止意外的缩进行为
+;;             (setq c-syntactic-indentation nil)
+;;             (setq indent-line-function 'indent-relative)))
+
+
+;; (load "google-c-style.el" nil t t)
+;; (add-hook 'c-mode-common-hook 'google-set-c-style)
+;; (add-hook 'c++-mode-common-hook 'google-set-c-style)
 
 ;; 强制将 .ipp 文件识别为 c++-mode
 (add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))

@@ -3,7 +3,7 @@
 
 (require 'init-package)
 (require 'init-quelpa)
-(require 'init-bookmark+)
+;; (require 'init-bookmark+)
 ;; (require 'init-disable-project)
 ;; (require 'init-projectile)
 
@@ -97,8 +97,8 @@
 ;; (require 'init-helm)
 (require 'init-clangfmt)
 (require 'init-hydra)
-(require 'init-ace-window)
-(require 'init-bookmark+)
+;; (require 'init-ace-window)
+;; (require 'init-bookmark+)
 (require 'init-undo-tree)
 (require 'init-smartparens)
 (require 'init-lspccls)
@@ -106,3 +106,9 @@
 (require 'init-grip-mode)
 (require 'init-startup-window)
 (require 'init-xml)
+(require 'init-perspective)
+(require 'init-ansi-color)
+(require 'init-bm)
+(require 'init-golden-ratio)
+(require 'init-linkmarks)
+
