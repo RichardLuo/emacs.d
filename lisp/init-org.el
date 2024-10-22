@@ -124,4 +124,14 @@
   (setq org-cliplink-default-description-style 'title)  ; 使用页面标题作为描述
 )
 
+(defun org-gen-link-file-line-no ()
+  "Insert a link to the current file and line number in org-mode format into the clipboard."
+  (interactive)
+  (let* ((line-number (line-number-at-pos))  ; 获取当前行号
+         (file-name (file-name-nondirectory (buffer-file-name)))  ; 获取文件名
+         (description (read-string "Enter description: "))  ; 提示输入描述
+         (link (format "[[file:%s::%d][%s]]" file-name line-number description)))  ; 生成链接
+    (kill-new link)  ; 将链接放入粘贴板
+    (message "Link copied to clipboard: %s" link)))  ; 提示用户链接已复制
+
 (provide 'init-org)
