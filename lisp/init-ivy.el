@@ -1,5 +1,5 @@
-(require 'cl)
 (require 'package)
+(require 'cl-lib)
 
 ;;
 ;; set autosave and backup directory
