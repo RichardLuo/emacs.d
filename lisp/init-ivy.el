@@ -1,3 +1,4 @@
+(require 'cl)
 (require 'package)
 
 ;;
@@ -11,7 +12,8 @@
 ;;
 ;; custome variable path
 ;;
-(setq custom-file "~/.emacs.d/custom-variables.el")
+(setq custom-file (expand-file-name "custom-variables.el" user-emacs-directory))
+
 (when (file-exists-p custom-file)
     (load custom-file))
 

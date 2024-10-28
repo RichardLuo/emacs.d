@@ -3,7 +3,7 @@
 
 (require 'init-package)
 (require 'init-quelpa)
-;; (require 'init-bookmark+)
+(require 'init-bookmark+)
 ;; (require 'init-disable-project)
 ;; (require 'init-projectile)
 
