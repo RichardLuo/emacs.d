@@ -140,20 +140,6 @@
     (let ((user-description (read-string "Edit description: " description)))
       (kill-new (format "[[file:%s::%d][%s]]" file-name line-number user-description)))))
 
-;; (use-package org-appear
-;;   :ensure t
-;;   :hook (org-mode . org-appear-mode)  ;; 在 org-mode 启动时自动启用 org-appear
-;;   :config
-;;   (setq org-appear-autolinks t           ;; 自动显示链接
-;;         org-appear-autosubmarkers t      ;; 自动显示子标记（如 /斜体/ 等）
-;;         org-appear-autokeywords t        ;; 自动显示关键词标记（如 TODO、DONE 等）
-;;         org-appear-delay 0.5             ;; 设置延迟显示（秒）
-;;         org-appear-trigger 'manual))     ;; 设置触发条件（manual为手动触发）
-
-;; (use-package org-appear
-;;   :ensure t
-;;   :hook (org-mode . org-appear-mode))
-
 (use-package org-appear
   :ensure t
   :after org
@@ -194,6 +180,34 @@
         ;;                                   (?* . ?▪)   ;; 实心小方块
         ;;                                   (?- . ?‣))
 
-        )
+        ))
+
+
+;; (use-package visual-fill-column
+;;   :ensure t
+;;   :hook (org-mode . my/org-visual-fill)
+;;   :config
+;;   (setq visual-fill-column-width 80    ;; 设置文本宽度
+;;         visual-fill-column-center-text t))  ;; 居中显示
+;; (defun my/org-visual-fill ()
+;;   "启用 org-mode 中的 visual-line-mode 和 visual-fill-column-mode。"
+;;   (visual-line-mode 1)  ;; 自动换行
+;;   (visual-fill-column-mode 1))  ;; 控制宽度和居中
+
+;; (defun my/org-visual-fill ()
+;;   "启用 org-mode 中的 visual-line-mode 和 visual-fill-column-mode。"
+;;   (interactive)  ;; 让函数可以被交互式调用
+;;   (visual-line-mode 1)  ;; 启用自动换行
+;;   (visual-fill-column-mode 1))  ;; 启用宽度限制和居中显示
+;; ;; 配置 visual-fill-column
+;; (use-package visual-fill-column
+;;   :ensure t
+;;   :after org  ;; 确保在 org-mode 加载之后再加载 visual-fill-column
+;;   :hook (org-mode . my/org-visual-fill)
+;;   :config
+;;   (setq visual-fill-column-width 130    ;; 设置文本宽度
+;;         visual-fill-column-center-text t))  ;; 居中显示
+;; ;; (setq-default fill-column nil)
+;; (define-key org-mode-map (kbd "C-c C-x v") 'my/org-visual-fill)
 
 (provide 'init-org)
