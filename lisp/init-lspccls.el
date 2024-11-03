@@ -123,7 +123,7 @@
 ;;   (setq ccls-args '("--log-file=/tmp/ccls.log" "--log-file-append" "-v 2")))
 
 ;; 增加垃圾回收阈值
-(setq gc-cons-threshold 100000000) ;; 100MB
+(setq gc-cons-threshold 300000000) ;; 100MB
 
 (setq lsp-enable-symbol-highlighting nil)
 (setq lsp-enable-snippet nil)

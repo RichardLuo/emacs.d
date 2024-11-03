@@ -173,8 +173,8 @@
   (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "◆" "▶")
 
         org-superstar-item-bullet-alist '((?+ . ?●)   ;; 大黑点
-                                          (?* . ?■)   ;; 实心方块
-                                          (?- . ?◆))
+                                          (?* . ?◆)
+                                          (?- . ?■))
 
         ;; org-superstar-item-bullet-alist '((?+ . ?•)   ;; 小圆点
         ;;                                   (?* . ?▪)   ;; 实心小方块
