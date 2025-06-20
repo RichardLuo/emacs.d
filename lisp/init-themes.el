@@ -1,6 +1,14 @@
 (when (eq system-type 'darwin) ;; mac specific settings
   ;; (set-frame-font "Roboto Mono-18" nil t)
-  (set-face-attribute 'default nil :font "Roboto Mono-17" :weight 'light)
+  ;; (set-face-attribute 'default nil :font "Roboto Mono-17" :weight 'light)
+  ;; (set-face-attribute 'default nil
+  ;;                     :family "JetBrainsMono Nerd Font Mono"
+  ;;                     :height 170
+  ;;                     :weight 'ital)
+
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono-19" :weight 'semi-light)
+  ;; (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono-17" :weight 'Regular)
+
   ;; (set-face-attribute 'default nil :font "SF Mono-20" :weight 'light)
   ;; (setq default-frame-alist nil)
 

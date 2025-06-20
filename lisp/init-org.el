@@ -5,13 +5,12 @@
   ;; 设置默认Org文件目录
   (setq org-directory "~/org/")
 
-  (setq org-agenda-files '("~/org"))
-
   (setq org-log-done 'note)  ;; 当任务完成时，提示输入注释并记录时间
-
 
   ;; 设置Org目录和默认Org文件
   (setq org-directory (list "~/org" "~/obsidian-techspec/org"))
+  (setq org-agenda-files org-directory)
+
   (setq org-default-notes-file (expand-file-name "notes.org" (car org-directory)))
 
   ;; Org-indent模式，用于美化文档结构

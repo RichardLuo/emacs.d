@@ -144,7 +144,7 @@
 
 ;; 自定义按键绑定
 ;; (global-set-key (kbd "M-.") 'lsp-find-definition)
-;; (global-set-key (kbd "M-,") 'xref-pop-marker-stack)
+(global-set-key (kbd "M-,") 'xref-pop-marker-stack)
 
 ;; Ignore .dir-locals.el for LSP
 (with-eval-after-load 'lsp-mode
@@ -240,5 +240,11 @@
                        (>= (buffer-size) (* 100 1024))) ;; 大于100KB的文件
               (lsp-disconnect)
               (message "LSP features disabled for large file"))))
+
+(with-eval-after-load 'lsp-mode
+  (define-key lsp-signature-mode-map (kbd "M-n") nil))
+
+(with-eval-after-load 'lsp-mode
+  (define-key lsp-signature-mode-map (kbd "M-p") nil))
 
 (provide 'init-lspccls)
