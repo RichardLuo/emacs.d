@@ -48,10 +48,10 @@
 ;; (add-hook 'write-file-hooks 'time-stamp)
 ;; (setq time-stamp-format "%:u %02m/%02d/%04y %02H02M02S")
 
-(global-set-key "\M-g" 'goto-line)
+;; (global-set-key "\M-g" 'goto-line)
 
 ;; list all the lines of the current buffer matching a regrep
-(global-set-key "\M-o" 'occur)
+;; (global-set-key "\M-o" 'occur)
 
 ;; reference or search in files.
 (global-set-key (kbd "C-M-z") 'grep-find)
@@ -141,8 +141,10 @@ that was stored with ska-point-to-register."
       )
     )
   )
-(global-set-key [(control ?\.)] 'ska-point-to-register)
-(global-set-key [(control ?\,)] 'ska-jump-to-register)
+
+;; (global-set-key [(control ?\.)] 'ska-point-to-register)
+;; (global-set-key [(control ?\,)] 'ska-jump-to-register)
+
 (global-set-key (kbd "C-c .") 'ska-point-to-register)
 (global-set-key (kbd "C-c ,") 'ska-jump-to-register)
 

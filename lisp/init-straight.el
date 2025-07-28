@@ -17,4 +17,4 @@
 ;; 配置 use-package 始终使用 straight.el
 (setq straight-use-package-by-default t)
 
-(provide 'init-stright)
+(provide 'init-straight)

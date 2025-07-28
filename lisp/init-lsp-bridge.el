@@ -17,6 +17,8 @@
   (lsp-bridge-inlay-hint-overlays '())
   :init
   ;; (setq lsp-bridge-enable-imenu t)
+  (setq lsp-bridge-python-lsp-server "pyright")
+  (setq lsp-bridge-enable-log t)
   (setq lsp-bridge-python-command "~/.lsp-bridge-env/bin/python")
   (setq-default lsp-bridge-enable-inlay-hint nil)
   (global-lsp-bridge-mode)
@@ -48,6 +50,23 @@
               ("s-e" . lsp-bridge-diagnostic-list)) ;; super+e 显示错误列表
 )
 
+;; Force override lsp-bridge's default JVM args
+(setq lsp-bridge-jdtls-jvm-args 
+      '("-Declipse.application=org.eclipse.jdt.ls.core.id1"
+        "-Dosgi.bundles.defaultStartLevel=4" 
+        "-Declipse.product=org.eclipse.jdt.ls.core.product"
+        "-Xms512m"
+        "-Xmx1G"))
+
+;; Make sure this is set before lsp-bridge loads
+(with-eval-after-load 'lsp-bridge
+  (setq lsp-bridge-jdtls-jvm-args 
+        '("-Declipse.application=org.eclipse.jdt.ls.core.id1"
+          "-Dosgi.bundles.defaultStartLevel=4"
+          "-Declipse.product=org.eclipse.jdt.ls.core.product" 
+          "-Xms512m"
+          "-Xmx1G")))
+
 (with-eval-after-load 'lsp-bridge
   (define-key lsp-bridge-peek-keymap (kbd "M-N") nil) ;; 移除 M-N
   (define-key lsp-bridge-peek-keymap (kbd "M-P") nil) ;; 移除 M-P
@@ -65,14 +84,27 @@
 ;;   :straight (lsp-bridge :type git :host github :repo "manateelazycat/lsp-bridge")
 ;;   :init
 ;;   (setq lsp-bridge-enable-imenu t)) ; 启用 imenu 支持
-
-
-
 ;; (setq lsp-bridge-signature-show-function 'lsp-bridge-signature-show-with-frame)
 ;; (setq lsp-bridge-signature-help-fetch-idle 10)
 ;; (setq eldoc-echo-area-use-multiline-p nil)
 ;; (setq lsp-bridge-enable-doc-popup nil)
-;; (setq lsp-bridge-enable-log t)
 ;; (global-eldoc-mode -1)
 
+(defun my/lsp-bridge-find-references ()
+  "先记录当前源码位置，再执行 lsp-bridge-find-references."
+  (interactive)
+  ;; 这里的 mark-ring 记录的是源文件位置 ✅
+  (when (fboundp 'lsp-bridge--record-mark-ring)
+    (lsp-bridge--record-mark-ring))
+  ;; 然后正常打开 *lsp-bridge-ref* buffer
+  (lsp-bridge-find-references))
+
+(setq lsp-bridge-java-command "/opt/homebrew/opt/openjdk@21/bin/java")
+(setenv "PATH" (concat "/opt/homebrew/opt/openjdk@21/bin:" (getenv "PATH")))
+(add-to-list 'exec-path "/opt/homebrew/opt/openjdk@21/bin")
+
+(setenv "PATH" (concat (expand-file-name "~/bin/fake-jdtls") ":" (getenv "PATH")))
+(add-to-list 'exec-path (expand-file-name "~/bin/fake-jdtls"))
+
 (provide 'init-lsp-bridge)
+

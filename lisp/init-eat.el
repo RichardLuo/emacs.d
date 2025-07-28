@@ -20,7 +20,7 @@
 
   :config
   ;; 设置 shell 路径（可选）
-  (setq eat-shell-file-name "/bin/bash")  ;; 也可以改成 "/bin/zsh"
+  (setq eat-shell-file-name "/bin/zsh")
 
   ;; 设置中文输入法支持（可选，适用于 macOS）
   ;; (setq eat-enable-input-method t)

@@ -1,5 +1,5 @@
 (use-package bookmark+
-  :quelpa (bookmark+ :fetcher git :url "https://github.com/emacsmirror/bookmark-plus.git")
+  :straight (bookmark+ :type git :host github :repo "emacsmirror/bookmark-plus")
   :config
   ;; 自动设置书签函数
   (defun my-auto-set-bookmark ()

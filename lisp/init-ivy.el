@@ -237,4 +237,14 @@ Version 2015-04-09"
 (require 'ivy-avy)
 (require 'ivy_buffer_extend)
 
+
+(defun my/ivy-edit-path-from-root ()
+  "Restart `counsel-find-file` with empty input and root directory."
+  (interactive)
+  (let ((default-directory "/"))  ;; or "~/" for home
+    (ivy-quit-and-run
+      (counsel-find-file ""))))
+
+(define-key ivy-minibuffer-map (kbd "C-e") #'my/ivy-edit-path-from-root)
+
 (provide 'init-ivy)
